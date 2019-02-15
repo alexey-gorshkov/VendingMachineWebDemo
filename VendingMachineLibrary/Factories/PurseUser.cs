@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using VendingMachineLibrary.Models;
+using VendingMachine.BLL.Models;
 
-namespace VendingMachineLibrary.Factories
+namespace VendingMachine.BLL.Factories
 {
     // кошелек пользователя
     public class PurseUser : PurseBase
@@ -10,7 +10,7 @@ namespace VendingMachineLibrary.Factories
         {
         }
 
-        // заплатить по сумме подходящими монетами
+        // заплатить сумму подходящими монетами
         public override IEnumerable<Coin> Pay(int summ)
         {
             IEnumerable<Coin> resultList = null;

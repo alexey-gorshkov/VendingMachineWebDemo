@@ -1,6 +1,6 @@
-﻿using VendingMachineLibrary.Factories.Products;
+﻿using VendingMachine.BLL.Factories.Products;
 
-namespace VendingMachineLibrary.Factories
+namespace VendingMachine.BLL.Factories
 {
     public class CoffeeProduct : ProductBase
     {

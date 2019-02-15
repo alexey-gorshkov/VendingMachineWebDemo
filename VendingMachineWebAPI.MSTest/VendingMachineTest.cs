@@ -1,21 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VendingMachineLibrary;
-using VendingMachineLibrary.Factories;
-using VendingMachineLibrary.Factories.Creators;
-using VendingMachineLibrary.Models;
+using VendingMachine.BLL;
+using VendingMachine.BLL.Factories;
+using VendingMachine.BLL.Factories.Creators;
+using VendingMachine.BLL.Models;
+using VendingMachine.Core.Models;
 
 namespace VendingMachineWebAPI.MSTest
 {
     [TestClass]
     public class VendingMachineTest
     {
-        private VendingMachine vendingMachine;
+        private VendingMachineService vendingMachine;
 
         public VendingMachineTest()
         {
-            vendingMachine = new VendingMachine();
+            vendingMachine = new VendingMachineService();
         }
 
         [TestMethod]
@@ -38,7 +39,7 @@ namespace VendingMachineWebAPI.MSTest
         }
 
         [TestMethod]
-        // после инициализации в кошельке ѕокупател€ есть заданное количество монет по “«
+        // после инициализации в кошельке ѕокупател€ есть заданное количество монет
         public void TestPuseUserInit()
         {
             PurseBase purse = vendingMachine.PurseUser;
@@ -72,6 +73,7 @@ namespace VendingMachineWebAPI.MSTest
         // юзер вносит монету 10р провер€ем что монета попала в кошелек VM
         public void PushAmmountDepositedUser10R()
         {
+            // количество монет у машины
             var startCountMoney10R = vendingMachine.PurseVM
                 .Coins.Count(x => x.TypeCoin == TypeCoin.Price10Rub);
 
@@ -79,32 +81,53 @@ namespace VendingMachineWebAPI.MSTest
             {
                 new Coin(TypeCoin.Price10Rub)
             };
-
+            // кидаем монетку 10р
             vendingMachine.PushAmmountDeposited(coins);
 
-            Assert.AreEqual(startCountMoney10R+1, vendingMachine.PurseVM.Coins.Count(x => x.TypeCoin == TypeCoin.Price10Rub));
+            // провер€ем количество монет достоинства 10р в кошельке машины
+            Assert.AreEqual(startCountMoney10R + 1, vendingMachine.PurseVM
+                .Coins.Count(x => x.TypeCoin == TypeCoin.Price10Rub));
         }
 
         [TestMethod]
         // возвращаем сдачу покупателю из депозита VM
         public void GetSurrenderUser()
         {
-            // кидаем монету
+            // 1 монета достоинства 10р
             var coins = new List<Coin>
             {
                 new Coin(TypeCoin.Price10Rub)
             };
 
             // сумма денег у юзера
-            var startSumMoneyUser = vendingMachine.PurseUser.Coins.Sum(x => x.Price);
+            var startSumMoneyUser = vendingMachine.PurseUser
+                .Coins.Sum(x => x.Price);
 
-            // вносим монету
+            // сумма денег в машине
+            var startSumMoneyVM = vendingMachine.PurseVM
+                .Coins.Sum(x => x.Price);
+
+            // вносим монету в машину
             vendingMachine.PushAmmountDeposited(coins);
+
+            // провер€ем уменьшилась ли сумма у юзера
+            Assert.AreEqual(startSumMoneyUser - (int)TypeCoin.Price10Rub, vendingMachine.PurseUser
+                .Coins.Sum(x => x.Price));
+
+            // провер€ем увеличилась ли сумма у машины
+            Assert.AreEqual(startSumMoneyVM + (int)TypeCoin.Price10Rub, vendingMachine.PurseVM
+                .Coins.Sum(x => x.Price));
 
             // возвращаем депозит юзеру
             vendingMachine.GetSurrenderUser();
 
-            Assert.AreEqual(startSumMoneyUser, vendingMachine.PurseUser.Coins.Sum(x => x.Price));
+            // свер€ем сумма у юзера должна остатсь€ таже что и в начале теста
+            Assert.AreEqual(startSumMoneyUser, vendingMachine.PurseUser
+                .Coins.Sum(x => x.Price));
+
+            // свер€ем сумма у машины должна остатсь€ таже что и в начале теста
+            Assert.AreEqual(startSumMoneyVM, vendingMachine.PurseVM
+                .Coins.Sum(x => x.Price));
         }
     }
 }

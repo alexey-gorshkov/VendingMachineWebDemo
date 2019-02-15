@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VendingMachineLibrary.Models;
+using VendingMachine.BLL.Models;
 
-namespace VendingMachineLibrary.Factories
+namespace VendingMachine.BLL.Factories
 {
     // Кошелек базовый класс
     public abstract class PurseBase

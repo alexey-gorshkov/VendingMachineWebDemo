@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using VendingMachineLibrary.Models;
+using VendingMachine.BLL.Models;
 
-namespace VendingMachineLibrary.Factories
+namespace VendingMachine.BLL.Factories
 {
     // кошелек Vending Machine
     public class PurseVM : PurseBase

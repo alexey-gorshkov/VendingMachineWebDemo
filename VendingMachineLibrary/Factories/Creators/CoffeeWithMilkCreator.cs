@@ -1,7 +1,7 @@
-﻿using VendingMachineLibrary.Factories.Products;
-using VendingMachineLibrary.Models;
+﻿using VendingMachine.BLL.Factories.Products;
+using VendingMachine.Core.Models;
 
-namespace VendingMachineLibrary.Factories.Creators
+namespace VendingMachine.BLL.Factories.Creators
 {
     public class CoffeeWithMilkCreator : CreatorBase
     {

@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VendingMachineLibrary.Factories;
-using VendingMachineLibrary.Factories.Creators;
-using VendingMachineLibrary.Factories.Products;
-using VendingMachineLibrary.Models;
+using VendingMachine.BLL.Factories;
+using VendingMachine.BLL.Factories.Creators;
+using VendingMachine.BLL.Factories.Products;
+using VendingMachine.BLL.Interfaces;
+using VendingMachine.BLL.Models;
+using VendingMachine.Core.Models;
 
-namespace VendingMachineLibrary
+namespace VendingMachine.BLL
 {
-    public class VendingMachine
+    public class VendingMachineService : IVendingMachineService
     {
         // депозит юзера, сумма что он внес в монетоприемник
         private int _amountDeposited { get; set; }
 
         // set samples data
-        public VendingMachine()
+        public VendingMachineService()
         {
             InitPurseVM();
             InitPurseUser();
@@ -22,7 +24,7 @@ namespace VendingMachineLibrary
         }
 
         // custom params machine and user
-        public VendingMachine(IEnumerable<CreatorBase> creators,
+        public VendingMachineService(IEnumerable<CreatorBase> creators,
             List<Coin> coinsVM,
             List<Coin> coinsUser)
         {

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VendingMachineLibrary.Models
+namespace VendingMachine.Core.Models
 {
-    // тип монеты
     public enum TypeCoin : int
     {
         Price1Rub = 1,

@@ -1,4 +1,6 @@
-﻿namespace VendingMachineLibrary.Models
+﻿using VendingMachine.Core.Models;
+
+namespace VendingMachine.BLL.Models
 {
     // монета и количество
     public class Coin

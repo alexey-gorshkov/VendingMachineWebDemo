@@ -1,0 +1,17 @@
+<section>
+  <h3>Покупки</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Наименование</th>
+        <th>Стоимость</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of userProducts">
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

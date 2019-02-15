@@ -1,5 +1,5 @@
 ﻿
-namespace VendingMachineLibrary.Factories.Products
+namespace VendingMachine.BLL.Factories.Products
 {
     interface IProductBase
     {

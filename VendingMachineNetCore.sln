@@ -3,11 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachineLibrary", "VendingMachineLibrary\VendingMachineLibrary.csproj", "{61EB3A60-0930-42CC-A08D-544050D3512C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.BLL", "VendingMachineLibrary\VendingMachine.BLL.csproj", "{61EB3A60-0930-42CC-A08D-544050D3512C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachineWebAPI.MSTest", "VendingMachineWebAPI.MSTest\VendingMachineWebAPI.MSTest.csproj", "{16F5F826-0626-4DE2-A70B-D7FF26C9017F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.MSTest", "VendingMachineWebAPI.MSTest\VendingMachine.MSTest.csproj", "{16F5F826-0626-4DE2-A70B-D7FF26C9017F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineWebAPI", "VendingMachineWebAPI\VendingMachineWebAPI.csproj", "{8BA1CB2E-A2D0-4D28-914B-13BF4C54C81E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.WebAPI", "VendingMachineWebAPI\VendingMachine.WebAPI.csproj", "{8BA1CB2E-A2D0-4D28-914B-13BF4C54C81E}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AngularUI", "UI.Angular\", "{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_48476"
+		Debug.AspNetCompiler.PhysicalPath = "UI.Angular\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_48476\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_48476"
+		Release.AspNetCompiler.PhysicalPath = "UI.Angular\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_48476\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "48476"
+		SlnRelativePath = "UI.Angular\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.DAL", "VendingMachine.DAL\VendingMachine.DAL.csproj", "{71B9B49A-BE75-4E91-9F93-33583893E066}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Core", "VendingMachine.Core\VendingMachine.Core.csproj", "{067EC5AE-F1C7-4D0C-B4F9-0BC92F34C703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +53,18 @@ Global
 		{8BA1CB2E-A2D0-4D28-914B-13BF4C54C81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BA1CB2E-A2D0-4D28-914B-13BF4C54C81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BA1CB2E-A2D0-4D28-914B-13BF4C54C81E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{71B9B49A-BE75-4E91-9F93-33583893E066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B9B49A-BE75-4E91-9F93-33583893E066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B9B49A-BE75-4E91-9F93-33583893E066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B9B49A-BE75-4E91-9F93-33583893E066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067EC5AE-F1C7-4D0C-B4F9-0BC92F34C703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067EC5AE-F1C7-4D0C-B4F9-0BC92F34C703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067EC5AE-F1C7-4D0C-B4F9-0BC92F34C703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067EC5AE-F1C7-4D0C-B4F9-0BC92F34C703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

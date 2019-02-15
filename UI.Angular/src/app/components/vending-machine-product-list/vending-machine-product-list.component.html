@@ -1,0 +1,24 @@
+<section id="products">
+  <h3>Выберите товар</h3>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Наименование</th>
+        <th>Стоимость</th>
+        <th>Остаток</th>
+        <th>Купить</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let creator of creators">
+        <td>{{creator.name}}</td>
+        <td>{{creator.price}}</td>
+        <td>{{creator.availability}}</td>
+        <td>
+          <button class="btn btn-success" (click)="onClickPay(creator)"
+                    *ngIf="creator.availability">Купить</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

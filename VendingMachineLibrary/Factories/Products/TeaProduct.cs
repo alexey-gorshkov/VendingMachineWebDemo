@@ -1,4 +1,4 @@
-﻿namespace VendingMachineLibrary.Factories.Products
+﻿namespace VendingMachine.BLL.Factories.Products
 {
     public class TeaProduct : ProductBase
     {

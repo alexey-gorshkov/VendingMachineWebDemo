@@ -1,0 +1,12 @@
+<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()">    
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <p *ngIf="message" class="text-center error">{{message}}</p>
+    <label for="inputUsername" class="sr-only">Email address</label>
+    <input type="text" id="inputUsername" class="form-control" formControlName="username" placeholder="Username"
+        required autofocus />
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password"
+        required />
+    <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+</form>
