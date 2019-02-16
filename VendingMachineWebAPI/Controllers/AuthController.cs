@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -44,8 +42,7 @@ namespace VendingMachine.WebAPI.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
             if (result.Succeeded)
             {
-                var token = GenerateJwtToken();
-                return new TokenResult("", token, true);
+                return GenerateJwtToken(user.Email, user.Id);
             }
             if (result.IsNotAllowed)
             {
@@ -53,32 +50,40 @@ namespace VendingMachine.WebAPI.Controllers
             }
             if (result.IsLockedOut)
             {
-                return new TokenResult("YourAccountLocked");
+                return new TokenResult("Your Account Locked");
             }
 
-            return new TokenResult("IncorrectLoginData");
+            return new TokenResult("Incorrect Login Data");
         }
 
 
-        public string GenerateJwtToken()
+        public TokenResult GenerateJwtToken(string email, Guid userId)
         {
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim(ClaimTypes.NameIdentifier, userId.ToString())
+            };
+
             // get options
             var jwtAppSettingOptions = _configuration.GetSection("JwtIssuerOptions");
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtAppSettingOptions["JwtKey"]));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(jwtAppSettingOptions["JwtExpireDays"]));
+            var expires = DateTime.Now.AddSeconds(Convert.ToDouble(jwtAppSettingOptions["JwtExpireSeconds"]));
 
             var tokeOptions = new JwtSecurityToken(
                 issuer: jwtAppSettingOptions["JwtIssuer"],
                 audience: jwtAppSettingOptions["JwtIssuer"],
-                claims: new List<Claim>(),
-                expires: DateTime.Now.AddMinutes(5),
+                claims: claims,
+                expires: expires,
                 signingCredentials: signinCredentials
             );
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-            return tokenString;
+            return new TokenResult(tokenString, Convert.ToInt32(jwtAppSettingOptions["JwtExpireSeconds"]));
         }
     }
 }

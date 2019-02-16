@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using VendingMachine.BLL;
+using System.Threading.Tasks;
 using VendingMachine.BLL.DTO;
+using VendingMachine.BLL.Interfaces;
+using VendingMachine.DAL.Entities;
 
 namespace VendingMachine.WebAPI.Controllers
 {
@@ -12,21 +15,32 @@ namespace VendingMachine.WebAPI.Controllers
     public class VendingMachineController : ControllerBase
     {
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
+        private readonly IVendingMachineService _vendingMachineService;
 
-        public VendingMachineController(IMapper mapper)
+        public VendingMachineController(IMapper mapper,
+            UserManager<User> userManager,
+            IVendingMachineService vendingMachineService)
         {
             _mapper = mapper;
+            _userManager = userManager;
+            _vendingMachineService = vendingMachineService;
         }
 
         // GET: api/VendingMachine
         [HttpGet]
-        public VendingMachineDTO Get()
+        public async Task<VendingMachineStateDTO> GetASync()
         {
-            //  VendingMachineService vendingMachineMy = new VendingMachineService();
-            //Session["VendingMachineMy"] = vendingMachineMy;
+            // user ----------
+            // свой кошелек
+            // депозит
+            // купленные товары
 
-            // return _mapper.Map<VendingMachineService, VendingMachineDTO>(vendingMachineMy);
-            return null;
+            // vm ------------
+            // доступные товары
+
+            var customer = await _userManager.GetUserAsync(User);
+            return await _vendingMachineService.GetUserStateAsync(customer);
         }
 
         // GET: api/VendingMachine/5

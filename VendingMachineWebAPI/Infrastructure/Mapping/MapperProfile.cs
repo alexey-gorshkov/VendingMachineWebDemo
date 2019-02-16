@@ -2,17 +2,11 @@
 
 namespace VendingMachineWebAPI.Infrastructure.Mappings
 {
-    public class MapperProfile : Profile
+    public class MapperProfile2 : Profile
     {
-        public MapperProfile()
+        public MapperProfile2()
         {
-            //создаем маппинг
-         //   CreateMap<VendingMachineState, VendingMachineDTO>();
 
-          //  CreateMap<PurseBase, PurseDTO>()
-           //     .ForMember(x=>x.Coins, map => map.MapFrom<CoinsResolver>());
-
-          //  CreateMap<CreatorBase, CreatorProductDTO>();
         }
     }
 }

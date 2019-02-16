@@ -7,5 +7,6 @@ namespace VendingMachine.DAL.Entities
     public class User : IdentityUser<Guid>
     {
         public Purse Purse { get; set; }
+        public UserDeposit UserDeposit { get; set; }
     }
 }

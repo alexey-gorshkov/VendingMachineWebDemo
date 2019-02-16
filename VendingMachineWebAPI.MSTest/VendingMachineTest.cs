@@ -16,7 +16,8 @@ namespace VendingMachineWebAPI.MSTest
 
         public VendingMachineTest()
         {
-            vendingMachine = new VendingMachineService();
+            // TODO DI
+           // vendingMachine = new VendingMachineService();
         }
 
         [TestMethod]

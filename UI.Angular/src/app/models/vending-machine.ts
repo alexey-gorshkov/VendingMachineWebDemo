@@ -1,8 +1,7 @@
 import { Purse } from './purse';
 import { CreatorProduct } from './creator-product';
-import { Serializable } from './serializable';
 
-export class VendingMachine extends Serializable {
+export class VendingMachine {
   purseUser: Purse;
   purseVM: Purse;
   creators: Array<CreatorProduct>;

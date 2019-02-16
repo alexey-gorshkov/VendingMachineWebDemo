@@ -35,12 +35,4 @@ export class ApiService {
   public getSurrenderUser(): Observable<Array<Coin>> {
     return this.http.post<Array<Coin>>(this.apiServiceUrl + 'GetSurrenderUser', {});
   }
-
-  private getHeaders(): Headers {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    const authToken = localStorage.getItem('auth_token');
-    headers.append('Authorization', `Bearer ${authToken}`);
-    return headers;
-  }
 }

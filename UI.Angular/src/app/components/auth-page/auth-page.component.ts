@@ -41,6 +41,9 @@ export class AuthPageComponent implements OnInit {
         if (response.isSuccess) {
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('token', response.token);
+          const expiresDate = new Date();
+          expiresDate.setSeconds(expiresDate.getSeconds() + response.expiresIn);
+          localStorage.setItem('expiresDate',  expiresDate.toString());
           this.router.navigate([this.returnUrl]);
         }
         this.message = response.message;

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using VendingMachine.BLL.DTO;
-using VendingMachine.BLL.Factories;
+using VendingMachine.DAL.Entities;
 
-namespace VendingMachineWebAPI.Infrastructure.Mappings
+namespace VendingMachine.BLL.Infrastructure.Mappings
 {
-    public class CoinsResolver : IValueResolver<PurseBase, PurseDTO, IEnumerable<CoinCountDTO>>
+    public class CoinsResolver : IValueResolver<Purse, PurseDTO, IEnumerable<CoinCountDTO>>
     {
-        public IEnumerable<CoinCountDTO> Resolve(PurseBase source, PurseDTO destination, IEnumerable<CoinCountDTO> member,
+        public IEnumerable<CoinCountDTO> Resolve(Purse source, PurseDTO destination, IEnumerable<CoinCountDTO> member,
             ResolutionContext context)
         {
-            IEnumerable<CoinCountDTO> grCoins = source.Coins
+            IEnumerable<CoinCountDTO> grCoins = source.PurseCoins
                 .GroupBy(x => x.TypeCoin)
                 .Select(gr => new CoinCountDTO {
                     Count = gr.Count(),

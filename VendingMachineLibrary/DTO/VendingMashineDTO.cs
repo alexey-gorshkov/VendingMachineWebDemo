@@ -2,18 +2,18 @@
 
 namespace VendingMachine.BLL.DTO
 {
-    public class VendingMachineDTO
+    public class VendingMachineStateDTO
     {
-        // purse VM
-        public PurseDTO PurseVM { get; set; }
+        // purse customer
+        public PurseDTO PurseCustomer { get; set; }
 
-        // purse user
-        public PurseDTO PurseUser { get; set; }
+        // deposit amount user
+        public int AmountDeposited { get; set; }
 
         // available produc creators
         public IEnumerable<CreatorProductDTO> Creators { get; set; }
 
-        // deposit amount user
-        public int AmountDeposited { get; set; }
+        // purse VM
+        public PurseDTO PurseVM { get; set; }
     }
 }

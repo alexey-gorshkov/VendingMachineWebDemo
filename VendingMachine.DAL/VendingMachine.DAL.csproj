@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
@@ -25,6 +24,9 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.entityframeworkcore\2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Identity.Stores">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.identity.stores\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Identity.Stores.dll</HintPath>
     </Reference>
   </ItemGroup>
 

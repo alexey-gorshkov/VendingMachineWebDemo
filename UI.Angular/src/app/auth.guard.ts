@@ -23,11 +23,22 @@ export class AuthGuard implements CanActivate {
 
   public isLoggedIn(): boolean {
     let status = false;
-    if (localStorage.getItem('isLoggedIn') === 'true') {
+
+    if (localStorage.getItem('isLoggedIn') === 'true' && this.validateExpDateToken() ) {
       status = true;
     } else {
       status = false;
     }
     return status;
+  }
+
+  private validateExpDateToken(): boolean {
+    const expiresIn = localStorage.getItem('expiresDate');
+    if (expiresIn === null || isNaN(Date.parse(expiresIn))) {
+      return false;
+    }
+
+    const expDate: Date = new Date(expiresIn);
+    return new Date().getTime() < expDate.getTime();
   }
 }
