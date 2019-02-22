@@ -5,13 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
-import { CustomerPurseComponent } from './components/customer-purse/customer-purse.component';
-import { PurseVendingMachineComponent } from './components/purse-vending-machine/purse-vending-machine.component';
-import { CustomerProductListComponent } from './components/customer-product-list/customer-product-list.component';
+import { CustomerPurseComponent } from './components/customer/customer-purse/customer-purse.component';
+import { VMPurseComponent } from './components/vending-machine/vm-purse/vm-purse.component';
+import { CustomerProductListComponent } from './components/customer/customer-product-list/customer-product-list.component';
 import { VendingMachineComponent } from './components/vending-machine/vending-machine.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { VendingMachineProductListComponent } from './components/vending-machine-product-list/vending-machine-product-list.component';
+import { VMProductListComponent } from './components/vending-machine/vm-product-list/vm-product-list.component';
 import { AuthPageComponent } from './components/auth-page/auth-page.component';
 import { AuthGuard } from './auth.guard';
 import { JwtInterceptorService } from './jwt.interceptor.service';
@@ -20,12 +20,12 @@ import { JwtInterceptorService } from './jwt.interceptor.service';
   declarations: [
     AppComponent,
     CustomerPurseComponent,
-    PurseVendingMachineComponent,
+    VMPurseComponent,
     CustomerProductListComponent,
     VendingMachineComponent,
     CustomerComponent,
     HomePageComponent,
-    VendingMachineProductListComponent,
+    VMProductListComponent,
     AuthPageComponent
   ],
   imports: [

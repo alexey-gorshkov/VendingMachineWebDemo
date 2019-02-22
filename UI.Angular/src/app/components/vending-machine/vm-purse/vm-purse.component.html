@@ -1,0 +1,23 @@
+<section>
+  <h3>Vending Machine</h3>
+  <h4>Purse</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><i class="fas fa-coins"></i></th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coin of purseVM?.coins">
+        <th>{{coin.typeCoin | currency}}</th>
+        <td>{{coin.count}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">Sum: {{purseVM?.getSumCoins() | currency}}</th>
+      </tr>
+    </tfoot>
+  </table>
+</section>

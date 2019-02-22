@@ -1,8 +1,6 @@
-﻿using VendingMachine.Core.Models;
-
-namespace VendingMachine.BLL.Models
+﻿namespace VendingMachine.Core.Models
 {
-    // монета и количество
+    // coin and price
     public class Coin
     {
         public TypeCoin TypeCoin { get; set; }

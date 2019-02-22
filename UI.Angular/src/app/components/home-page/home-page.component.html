@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 user-col">
-      <app-customer [vendingMachine]="vendingMachine"></app-customer>
+      <app-customer [customer]="vendingMachineState?.customer" (refreshDataVM)="refreshDataVM($event)"></app-customer>
     </div>
     <div class="col-md-6 offset-md-2 vm-col vm-col">
-      <app-vending-machine [vendingMachine]="vendingMachine"></app-vending-machine>
+      <app-vending-machine [vendingMachine]="vendingMachineState?.vendingMachine" (refreshDataVM)="refreshDataVM($event)"></app-vending-machine>
     </div>
   </div>
 </div>

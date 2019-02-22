@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { VendingMachine } from 'src/app/models/vending-machine';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { VendingMachineService } from 'src/app/services/vending-machine.service';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-customer',
@@ -8,11 +9,15 @@ import { VendingMachine } from 'src/app/models/vending-machine';
 })
 export class CustomerComponent implements OnInit {
   // состояние машины
-  @Input() vendingMachine: VendingMachine;
+  @Input() customer: Customer;
+  @Output() refreshDataVM: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private service: VendingMachineService) { }
 
   ngOnInit() {
   }
 
+  public refreshData(event: any) {
+    this.refreshDataVM.emit(null);
+  }
 }

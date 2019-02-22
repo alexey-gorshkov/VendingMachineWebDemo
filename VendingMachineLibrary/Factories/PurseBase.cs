@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VendingMachine.BLL.Models;
+using VendingMachine.Core.Models;
 
 namespace VendingMachine.BLL.Factories
 {

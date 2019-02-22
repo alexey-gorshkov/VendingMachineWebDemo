@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
 using VendingMachine.BLL.Interfaces;
+using VendingMachine.BLL.Services;
 using VendingMachine.DAL.Data;
 using VendingMachine.DAL.Entities;
 
@@ -17,6 +18,7 @@ namespace VendingMachine.BLL
         public static IServiceCollection AddBLLServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IVendingMachineService, VendingMachineService>();
+            services.AddTransient<IPaymentService, PaymentService>();
             // services.AddScoped<IImageService, GmbImageService>();
             // services.AddSingleton(configuration.GetSection("EmailOptions").Get<EmailOptions>());
 

@@ -1,0 +1,35 @@
+<section>
+  <h3>Customer</h3>
+  <h4>Purse</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><i class="fas fa-coins"></i></th>
+        <th>Amount</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coin of (purse?.coins ? purse.coins : [])">
+        <th>{{coin.typeCoin | currency}}</th>
+        <td>{{coin.count}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="pushAmountDeposited(coin)" *ngIf="coin.count">Put a coin</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">Sum: {{purse?.getSumCoins() | currency}}</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+</section>
+<section>
+  <h4>
+    Внесенная сумма: {{amountDeposited | currency}}
+    <button class="btn btn-warning" (click)="getSurrenderAndHoldUser()">Получить сдачу</button>
+  </h4>
+</section>

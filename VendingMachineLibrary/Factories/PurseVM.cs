@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using VendingMachine.BLL.Models;
+using VendingMachine.Core.Models;
 
 namespace VendingMachine.BLL.Factories
 {

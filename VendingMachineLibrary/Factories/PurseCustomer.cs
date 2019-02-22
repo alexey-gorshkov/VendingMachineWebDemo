@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using VendingMachine.BLL.Models;
+using VendingMachine.Core.Models;
 
 namespace VendingMachine.BLL.Factories
 {
     // кошелек пользователя
-    public class PurseUser : PurseBase
+    public class PurseCustomer : PurseBase
     {
-        public PurseUser(List<Coin> coins) : base(coins)
+        public PurseCustomer(List<Coin> coins) : base(coins)
         {
         }
 

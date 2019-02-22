@@ -1,17 +1,17 @@
-import { ApiService } from 'src/app/services/api.service';
+import { VendingMachineService } from 'src/app/services/vending-machine.service';
 import { CreatorProduct } from 'src/app/models/creator-product';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-vending-machine-product-list',
-  templateUrl: './vending-machine-product-list.component.html',
-  styleUrls: ['./vending-machine-product-list.component.css']
+  selector: 'app-vm-product-list',
+  templateUrl: './vm-product-list.component.html',
+  styleUrls: ['./vm-product-list.component.css']
 })
-export class VendingMachineProductListComponent implements OnInit {
+export class VMProductListComponent implements OnInit {
 
   @Input() creators: CreatorProduct[];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: VendingMachineService) { }
 
   ngOnInit() {
   }

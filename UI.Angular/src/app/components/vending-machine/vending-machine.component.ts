@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VendingMachine } from 'src/app/models/vending-machine';
-import { ApiService } from 'src/app/services/api.service';
+import { VendingMachineService } from 'src/app/services/vending-machine.service';
 
 @Component({
   selector: 'app-vending-machine',
@@ -11,7 +11,7 @@ export class VendingMachineComponent implements OnInit {
   // состояние машины
   @Input() vendingMachine: VendingMachine;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: VendingMachineService) { }
 
   ngOnInit() {
   }

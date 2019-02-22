@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { VendingMachine } from 'src/app/models/vending-machine';
-import { Product } from 'src/app/models/product';
-import { ApiService } from 'src/app/services/api.service';
+import { VendingMachineState } from 'src/app/models/vending-machine-state';
+import { VendingMachineService } from 'src/app/services/vending-machine.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,24 +8,22 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  // состояние машины
-  vendingMachine: VendingMachine;
-
-  // покупки пользователя
-  userProducts: Array<Product> = [];
-
-  constructor(private apiService: ApiService) { }
+  // current state VM
+  vendingMachineState: VendingMachineState;
+  constructor(private apiService: VendingMachineService) { }
 
   ngOnInit() {
     this.initializeVM();
   }
 
   public initializeVM() {
-    this.userProducts = [];
     this.apiService.initializeVM()
       .subscribe(result => {
-        this.vendingMachine = result;
+        this.vendingMachineState = result;
     });
   }
 
+  public refreshDataVM(event: any) {
+    this.initializeVM();
+  }
 }

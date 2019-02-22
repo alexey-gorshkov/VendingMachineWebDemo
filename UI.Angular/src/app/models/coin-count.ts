@@ -1,6 +1,6 @@
 import { TypeCoin } from './enums';
 
-// тип монеты и количество
+// type coin and count
 export class CoinCount {
   typeCoin: TypeCoin;
   count: number;

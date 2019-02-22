@@ -14,7 +14,7 @@ namespace VendingMachine.BLL.Infrastructure.Mappings
             IEnumerable<CoinCountDTO> grCoins = source.PurseCoins
                 .GroupBy(x => x.TypeCoin)
                 .Select(gr => new CoinCountDTO {
-                    Count = gr.Count(),
+                    Count = gr.Sum(g => g.Count),
                     TypeCoin = gr.Key
                 })
                 .OrderBy(x=>x.TypeCoin)
