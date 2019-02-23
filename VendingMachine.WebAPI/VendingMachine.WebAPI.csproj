@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VendingMachine.BLL\VendingMachine.BLL.csproj" />
     <ProjectReference Include="..\VendingMachine.DAL\VendingMachine.DAL.csproj" />
-    <ProjectReference Include="..\VendingMachineLibrary\VendingMachine.BLL.csproj" />
   </ItemGroup>
 
 </Project>
