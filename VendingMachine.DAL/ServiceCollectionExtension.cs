@@ -16,6 +16,8 @@ namespace VendingMachine.DAL
 
             services.AddScoped<IPurseRepository, PurseRepository>();
             services.AddScoped<IUserDepositRepository, UserDepositRepository>();
+            services.AddScoped<IVMCreatorRepository, VMCreatorRepository>();
+            services.AddScoped<ICustomerProductRepository, CustomerProductRepository>();
 
             return services;
         }

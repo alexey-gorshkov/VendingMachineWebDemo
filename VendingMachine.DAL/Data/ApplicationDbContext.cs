@@ -11,6 +11,9 @@ namespace VendingMachine.DAL.Data
         public DbSet<Purse> Purses { get; set; }
         public DbSet<PurseCoin> PurseCoins { get; set; }
         public DbSet<UserDeposit> UserDeposits { get; set; }
+        public DbSet<VMEntity> VMEntities { get; set; }
+        public DbSet<VMCreator> VMCreators { get; set; }
+        public DbSet<CustomerProduct> CustomerProducts { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

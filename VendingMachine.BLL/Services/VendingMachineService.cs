@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VendingMachine.BLL.DTO;
 using VendingMachine.BLL.Factories.Creators;
+using VendingMachine.BLL.Factories.Products;
 using VendingMachine.BLL.Interfaces;
 using VendingMachine.Core.Models;
 using VendingMachine.DAL.Entities;
@@ -19,16 +21,22 @@ namespace VendingMachine.BLL.Services
 
         private readonly IPurseRepository _purseRepository;
         private readonly IUserDepositRepository _userDepositRepository;
+        private readonly IVMCreatorRepository _vMCreatorRepository;
+        private readonly ICustomerProductRepository _customerProductRepository;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
 
         public VendingMachineService(IPurseRepository purseRepository,
             IUserDepositRepository userDepositRepository,
+            IVMCreatorRepository vMCreatorRepository,
+            ICustomerProductRepository customerProductRepository,
             IMapper mapper,
             UserManager<User> userManager)
         {
             _purseRepository = purseRepository;
             _userDepositRepository = userDepositRepository;
+            _vMCreatorRepository = vMCreatorRepository;
+            _customerProductRepository = customerProductRepository;
             _mapper = mapper;
             _userManager = userManager;
         }
@@ -39,9 +47,12 @@ namespace VendingMachine.BLL.Services
                 .Where(x => x.UserId == customer.Id)
                 .SingleOrDefaultAsync();
 
-            var creators = GetCreators();
-            var creatorsDTO = _mapper.Map<List<CreatorBase>, List<CreatorProductDTO>>(creators);
+            var creators = await _vMCreatorRepository.GetAll().ToListAsync();
+            var creatorsDTO = _mapper.Map<List<VMCreator>, List<CreatorProductDTO>>(creators);
             var purseCustomer = await _purseRepository.GetPurseAndCoinsAsync(customer.Id);
+            var customerProducts = await _customerProductRepository.GetAll()
+                .Where(x => x.CustomerId == customer.Id)
+                .ToListAsync();
             var vmUser = await _userManager.FindByNameAsync(VMUSERNAME);
             var purseVM = await _purseRepository.GetPurseAndCoinsAsync(vmUser.Id);
 
@@ -50,12 +61,13 @@ namespace VendingMachine.BLL.Services
                 Customer = new CustomerDTO
                 {
                     AmountDeposited = deposit?.AmountOfDeposit ?? 0,
-                    PurseCustomer = _mapper.Map<Purse, PurseDTO>(purseCustomer)
+                    Purse = _mapper.Map<Purse, PurseDTO>(purseCustomer),
+                    Products = _mapper.Map<List<CustomerProduct>, List<ProductDTO>>(customerProducts)
                 },
                 VendingMachine = new VendingMachineDTO
                 {
-                    Creators = creatorsDTO,
-                    PurseVM = _mapper.Map<Purse, PurseDTO>(purseVM)
+                    CreatorProducts = creatorsDTO,
+                    Purse = _mapper.Map<Purse, PurseDTO>(purseVM)
                 }
             };
         }
@@ -72,144 +84,30 @@ namespace VendingMachine.BLL.Services
             return await _purseRepository.RemoveCoinsAsync(vmUser.Id, sum);
         }
 
-        // available creators
-        //  public IEnumerable<CreatorBase> Creators { get; set; }
-
-        // purse VM
-        //public PurseBase PurseVM { get; set; }
-
-        // purse user
-        //public PurseBase PurseUser { get; set; }
-
-        /// <summary>
-        /// Депозит юзера
-        /// </summary>
-      //  public int AmountDeposited => _amountDeposited;
-
-        /// <summary>
-        /// Пополняем депозит монетами юзера
-        /// </summary>
-        /// <param name="coins"></param>
-        /// <returns></returns>
-        //public int PushAmmountDeposited(IEnumerable<Coin> coins)
-        //{
-        //    if (coins == null) throw new ArgumentNullException(nameof(coins));
-        //    if (PurseCustomer.ValidateAmountCoins(coins))
-        //    {
-        //        var coinsUser = PurseCustomer.Pay(coins);
-
-        //        PurseVM.Replenish(coinsUser);
-
-        //        var summCoins = coinsUser.Sum(x => x.Price);
-        //        _amountDeposited += summCoins;
-        //    }
-
-        //    return AmountDeposited;
-        //}
-
         // выдача товара из машины
-        //public ProductBase CreateProduct(TypeProduct typeProduct)
-        //{
-        //    ProductBase product = null;
-
-        //    // пользователь не внес депозит
-        //    if (AmountDeposited == 0)
-        //        return null;
-
-        //    CreatorBase creator = GetCreators()
-        //        .FirstOrDefault(x => x.TypeProduct == typeProduct);
-
-        //    // хватает денег у юзера
-        //    if (creator != null && creator.Price <= AmountDeposited)
-        //    {
-        //        product = creator.Create();
-        //        if (product != null)
-        //            ProcessPay(creator.Price);
-        //    }
-
-        //    return product;
-        //}
-
-        /// <summary>
-        /// Процесс покупки
-        /// </summary>
-        /// <param name="price"></param>
-        //private void ProcessPay(int price)
-        //{
-        //    _amountDeposited -= price;
-        //}
-
-        /// <summary>
-        /// Вернуть депозит покупателю c кошелька VM
-        /// </summary>
-        /// <returns></returns>
-        //public IEnumerable<Coin> GetSurrenderUser()
-        //{
-        //    // имеется депозит у юзера
-        //    if (AmountDeposited > 0)
-        //    {
-        //        IEnumerable<Coin> coinsVM = null;
-        //        // проверяем имеются ли монеты для сдачи в кошельке ВМ
-        //        if (PurseVM.ValidateAmountCoins(AmountDeposited))
-        //        {
-        //            coinsVM = PurseVM.Pay(AmountDeposited);
-        //           // PurseUser.Replenish(coinsVM);
-        //            _amountDeposited = 0;
-        //        }
-
-        //        return coinsVM;
-        //    }
-        //    return null;
-        //}
-
-        #region Init data
-        /// <summary>
-        /// Init purse VM money
-        /// </summary>
-        //private void InitPurseVM()
-        //{
-        //    List<Coin> coinsVM = new List<Coin>();
-        //    for (int i = 0; i < 100; i++)
-        //        coinsVM.AddRange(new List<Coin> {
-        //            new Coin(TypeCoin.Price1Rub),
-        //            new Coin(TypeCoin.Price2Rub),
-        //            new Coin(TypeCoin.Price5Rub),
-        //            new Coin(TypeCoin.Price10Rub)
-        //        });
-
-        //    PurseVM = new PurseVM(coinsVM);
-        //}
-
-        // инициализируем монеты пользователя
-        //private void InitPurseUser()
-        //{
-        //    List<Coin> coinsUser = new List<Coin>();
-        //    for (int i = 0; i < 10; i++)
-        //        coinsUser.Add(new Coin(TypeCoin.Price1Rub));
-        //    for (int i = 0; i < 30; i++)
-        //        coinsUser.Add(new Coin(TypeCoin.Price2Rub));
-        //    for (int i = 0; i < 20; i++)
-        //        coinsUser.Add(new Coin(TypeCoin.Price5Rub));
-        //    for (int i = 0; i < 15; i++)
-        //        coinsUser.Add(new Coin(TypeCoin.Price10Rub));
-
-        //    PurseUser = new PurseUser(coinsUser);
-        //}
-
-        // init creators
-        private List<CreatorBase> GetCreators()
+        public async Task<ProductDTO> CreateProductAsync(TypeProduct typeProduct)
         {
-            var creators = new List<CreatorBase>
+            var creatorEntity = await _vMCreatorRepository.FirstOrDefaultAsync(x => x.TypeProduct == typeProduct);
+            if (creatorEntity == null)
             {
-                new TeaCreator(10, 13),
-                new CoffeeCreator(20, 18),
-                new CoffeeWithMilkCreator(20, 21),
-                new JuiceCreator(15, 35)
-            };
-            return creators;
+                throw new ApplicationException("This product cannot be created");
+            }
+
+            CreatorBase creatorFactory = (CreatorBase)Activator.CreateInstance(Type.GetType(creatorEntity.CreatorClassName), creatorEntity.Availability);
+            // готовим продукт использую фабричный метод
+            creatorFactory.Create();
+
+            return new ProductDTO { Name = creatorEntity.Name, Price = creatorEntity.Price };
         }
 
-
-        #endregion
+        public async Task<CreatorProductDTO> GetInfoProductAsync(TypeProduct typeProduct)
+        {
+            VMCreator creatorEntity = await _vMCreatorRepository.FirstOrDefaultAsync(x => x.TypeProduct == typeProduct);
+            if (creatorEntity == null)
+            {
+                throw new ApplicationException("This product cannot be created");
+            }
+            return _mapper.Map<VMCreator, CreatorProductDTO>(creatorEntity);
+        }
     }
 }

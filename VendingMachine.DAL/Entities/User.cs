@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 
 namespace VendingMachine.DAL.Entities
 {
@@ -8,5 +9,7 @@ namespace VendingMachine.DAL.Entities
     {
         public Purse Purse { get; set; }
         public UserDeposit UserDeposit { get; set; }
+
+        public virtual ICollection<CustomerProduct> CustomerProducts { get; set; }
     }
 }

@@ -1,2 +1,2 @@
-<app-vm-purse [purseVM]="vendingMachine?.purseVM"></app-vm-purse>
-<app-vm-product-list [creators]="vendingMachine?.creators"></app-vm-product-list>
+<app-vm-purse [purseVM]="vendingMachine?.purse"></app-vm-purse>
+<app-vm-product-list [creatorProducts]="vendingMachine?.creatorProducts" (refreshData)="refreshData($event)"></app-vm-product-list>

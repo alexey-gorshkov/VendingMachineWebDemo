@@ -4,7 +4,7 @@ namespace VendingMachine.BLL.Factories
 {
     public class CoffeeProduct : ProductBase
     {
-        public CoffeeProduct(int price, string name) : base(price, name)
+        public CoffeeProduct(string name) : base(name)
         {
         }
     }

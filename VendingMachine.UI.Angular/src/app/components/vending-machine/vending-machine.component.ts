@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VendingMachine } from 'src/app/models/vending-machine';
 import { VendingMachineService } from 'src/app/services/vending-machine.service';
 
@@ -10,10 +10,14 @@ import { VendingMachineService } from 'src/app/services/vending-machine.service'
 export class VendingMachineComponent implements OnInit {
   // состояние машины
   @Input() vendingMachine: VendingMachine;
+  @Output() refreshDataVM: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private apiService: VendingMachineService) { }
 
   ngOnInit() {
   }
 
+  public refreshData(event: any) {
+    this.refreshDataVM.emit(null);
+  }
 }

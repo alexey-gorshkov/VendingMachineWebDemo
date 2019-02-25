@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using VendingMachine.BLL.DTO;
-using VendingMachine.BLL.Factories;
-using VendingMachine.BLL.Factories.Creators;
 using VendingMachine.DAL.Entities;
 
 namespace VendingMachine.BLL.Infrastructure.Mappings
@@ -10,14 +8,15 @@ namespace VendingMachine.BLL.Infrastructure.Mappings
     {
         public MapperProfile()
         {
-            //создаем маппинг
-            CreateMap<VendingMachineState, VendingMachineStateDTO>();
+            CreateMap<VMEntity, VendingMachineStateDTO>();
 
             CreateMap<Purse, PurseDTO>()
                 .ForMember(x => x.Coins, map => map.MapFrom<CoinsResolver>());
 
+            CreateMap<VMCreator, CreatorProductDTO>()
+                .ForMember(x => x.Product, map => map.MapFrom( src => new ProductDTO { Name = src.Name, Price = src.Price } ));
 
-            CreateMap<CreatorBase, CreatorProductDTO>();
+            CreateMap<CustomerProduct, ProductDTO>();
         }
     }
 }

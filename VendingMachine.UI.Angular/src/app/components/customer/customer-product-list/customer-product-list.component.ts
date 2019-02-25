@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Purse } from 'src/app/models/purse';
 import { Product } from 'src/app/models/product';
 
 @Component({

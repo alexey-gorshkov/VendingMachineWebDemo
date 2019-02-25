@@ -5,8 +5,8 @@ namespace VendingMachine.BLL.Factories.Creators
 {
     public class CoffeeWithMilkCreator : CreatorBase
     {
-        public CoffeeWithMilkCreator(int availability, int price)
-            : base(availability, price, "Coffee With Milk", TypeProduct.CoffeeWithMilk)
+        public CoffeeWithMilkCreator(int availability)
+            : base(availability, "Coffee With Milk", TypeProduct.CoffeeWithMilk)
         {
         }
 
@@ -16,7 +16,7 @@ namespace VendingMachine.BLL.Factories.Creators
 
             if (ValidateProduct())
             {
-                cofeeWithMilkProduct = new CoffeeWithMilkProduct(Price, Name);
+                cofeeWithMilkProduct = new CoffeeWithMilkProduct(Name);
                 Availability--;
             }
 

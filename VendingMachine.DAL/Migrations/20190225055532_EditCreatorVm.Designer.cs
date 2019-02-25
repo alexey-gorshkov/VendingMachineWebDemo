@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VendingMachine.DAL.Data;
 
 namespace VendingMachine.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190225055532_EditCreatorVm")]
+    partial class EditCreatorVm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,27 +132,6 @@ namespace VendingMachine.DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("VendingMachine.DAL.Entities.CustomerProduct", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<Guid>("CustomerId");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<int>("Price");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("CustomerProducts");
-                });
-
             modelBuilder.Entity("VendingMachine.DAL.Entities.Purse", b =>
                 {
                     b.Property<Guid>("Id")
@@ -267,13 +248,9 @@ namespace VendingMachine.DAL.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("CreatorClassName")
-                        .IsRequired();
+                    b.Property<string>("CreatorClassName");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<int>("Price");
+                    b.Property<string>("Name");
 
                     b.Property<int>("TypeProduct");
 
@@ -346,14 +323,6 @@ namespace VendingMachine.DAL.Migrations
                     b.HasOne("VendingMachine.DAL.Entities.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("VendingMachine.DAL.Entities.CustomerProduct", b =>
-                {
-                    b.HasOne("VendingMachine.DAL.Entities.User", "Customer")
-                        .WithMany("CustomerProducts")
-                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angu
 import { Purse } from 'src/app/models/purse';
 import { CoinCount } from 'src/app/models/coin-count';
 import { Coin } from 'src/app/models/coin';
-import { CustomerDepositService } from 'src/app/services/customer-deposit.service';
+import { PaymentService } from 'src/app/services/payment.service';
 
 @Component({
   selector: 'app-customer-purse',
@@ -14,7 +14,7 @@ export class CustomerPurseComponent implements OnInit, OnChanges {
   @Input() amountDeposited: number;
   @Output() refreshData: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private service: CustomerDepositService) { }
+  constructor(private service: PaymentService) { }
 
   ngOnInit() {
   }

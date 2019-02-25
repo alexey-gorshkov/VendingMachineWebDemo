@@ -2,7 +2,7 @@
 {
     public class JuiceProduct : ProductBase
     {
-        public JuiceProduct(int price, string name) : base(price, name)
+        public JuiceProduct(string name) : base(name)
         {
         }
     }

@@ -10,6 +10,8 @@ namespace VendingMachine.DAL.Data
 {
     public static class SeedData
     {
+        const string VMUSERNAME = "vending-machine@vmachine.com";
+
         public static void Initialize(IServiceProvider serviceProvider)
         {
             using (var scope = serviceProvider.CreateScope())
@@ -20,6 +22,7 @@ namespace VendingMachine.DAL.Data
 
                 context.Database.Migrate();
                 InitUsers(userManager);
+                InitVM(userManager, context);
             }
         }
 
@@ -31,8 +34,9 @@ namespace VendingMachine.DAL.Data
                 {
                     ApplicationUser = new User
                     {
-                        UserName = "vending-machine@vmachine.com",
-                        Email = "vending-machine@vmachine.com",
+                        UserName = VMUSERNAME,
+                        Email = VMUSERNAME
+,
                         Purse = new Purse
                         {
                             PurseCoins = new List<PurseCoin>
@@ -70,18 +74,78 @@ namespace VendingMachine.DAL.Data
             foreach (var user in users)
             {
                 var findUser = userManager.FindByNameAsync(user.ApplicationUser.UserName).Result;
-                if (findUser == null)
+                if (findUser != null)
                 {
-                    var createPowerUser = userManager.CreateAsync(user.ApplicationUser, user.Password).Result;
-                    if (createPowerUser.Succeeded)
-                    {
-                        var confirmationToken = userManager.GenerateEmailConfirmationTokenAsync(user.ApplicationUser).Result;
-                        var result = userManager.ConfirmEmailAsync(user.ApplicationUser, confirmationToken).Result;
-                        //here we tie the new user to the role
-                        //userManager.AddToRoleAsync(serviceUser, "Admin").GetAwaiter().GetResult();
-                    }
+                    return;
+                }
+                var createPowerUser = userManager.CreateAsync(user.ApplicationUser, user.Password).Result;
+                if (createPowerUser.Succeeded)
+                {
+                    var confirmationToken = userManager.GenerateEmailConfirmationTokenAsync(user.ApplicationUser).Result;
+                    var result = userManager.ConfirmEmailAsync(user.ApplicationUser, confirmationToken).Result;
+                    //here we tie the new user to the role
+                    //userManager.AddToRoleAsync(serviceUser, "Admin").GetAwaiter().GetResult();
                 }
             }
+        }
+
+        private static void InitVM(UserManager<User> userManager, ApplicationDbContext dbContext)
+        {
+            var findUser = userManager.FindByNameAsync(VMUSERNAME).Result;
+            if (findUser == null)
+            {
+                return;
+            }
+
+            var vMEntity = dbContext.VMEntities.SingleOrDefaultAsync(x => x.UserAdminId == findUser.Id).Result;
+            if (vMEntity != null)
+            {
+                return;
+            }
+
+            vMEntity = new VMEntity
+            {
+                UserAdminId = findUser.Id,
+                Name = "My vending machine",
+                Creators = new List<VMCreator>
+                {
+                    new VMCreator
+                    {
+                        Name = "Tea",
+                        Availability = 10,
+                        Price = 13,
+                        TypeProduct = TypeProduct.Tea,
+                        CreatorClassName = "VendingMachine.BLL.Factories.Creators.TeaCreator"
+                    },
+                    new VMCreator
+                    {
+                        Name = "Coffee",
+                        Availability = 20,
+                        Price = 18,
+                        TypeProduct = TypeProduct.Coffee,
+                        CreatorClassName = "VendingMachine.BLL.Factories.Creators.CoffeeCreator"
+                    },
+                    new VMCreator
+                    {
+                        Name = "CoffeeWithMilk",
+                        Availability = 20,
+                        Price = 21,
+                        TypeProduct = TypeProduct.CoffeeWithMilk,
+                        CreatorClassName = "VendingMachine.BLL.Factories.Creators.CoffeeWithMilkCreator"
+                    },
+                    new VMCreator
+                    {
+                        Name = "Juice",
+                        Availability = 15,
+                        Price = 35,
+                        TypeProduct = TypeProduct.Juice,
+                        CreatorClassName = "VendingMachine.BLL.Factories.Creators.JuiceCreator"
+                    },
+                }
+            };
+
+            dbContext.Add(vMEntity);
+            dbContext.SaveChanges();
         }
     }
 

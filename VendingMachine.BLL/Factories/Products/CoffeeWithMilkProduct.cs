@@ -2,7 +2,7 @@
 {
     public class CoffeeWithMilkProduct : ProductBase
     {
-        public CoffeeWithMilkProduct(int price, string name) : base(price, name)
+        public CoffeeWithMilkProduct(string name) : base(name)
         {
         }
     }

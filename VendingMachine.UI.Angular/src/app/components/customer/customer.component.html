@@ -1,2 +1,2 @@
-<app-customer-purse [purse]="customer?.purseCustomer" [amountDeposited]="customer?.amountDeposited" (refreshData)="refreshData($event)"></app-customer-purse>
-<app-customer-product-list></app-customer-product-list>
+<app-customer-purse [purse]="customer?.purse" [amountDeposited]="customer?.amountDeposited" (refreshData)="refreshData($event)"></app-customer-purse>
+<app-customer-product-list [userProducts]="customer?.products"></app-customer-product-list>

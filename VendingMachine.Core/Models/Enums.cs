@@ -12,7 +12,7 @@ namespace VendingMachine.Core.Models
         Price10Rub = 10,
     }
 
-    public enum TypeProduct
+    public enum TypeProduct : int
     {
         Coffee = 1,
         CoffeeWithMilk = 2,

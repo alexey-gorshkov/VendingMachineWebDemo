@@ -1,10 +1,11 @@
 import { Purse } from './purse';
-import { CreatorProduct } from './creator-product';
 import { Type } from 'class-transformer';
+import { CreatorProduct } from './creator';
 
 export class VendingMachine {
     @Type(() => Purse)
-    purseVM: Purse;
+    purse: Purse;
 
-    creators: Array<CreatorProduct>;
+    @Type(() => CreatorProduct)
+    creatorProducts: Array<CreatorProduct>;
 }

@@ -9,14 +9,12 @@ namespace VendingMachine.BLL.Factories.Creators
         /// Доступные порции
         /// </summary>
         public int Availability { get; set; }
-        public int Price { get; set; }
         public string Name { get; }
         public TypeProduct TypeProduct { get; }
 
-        protected CreatorBase(int availability, int price, string name, TypeProduct typeProduct)
+        protected CreatorBase(int availability, string name, TypeProduct typeProduct)
         {
             Availability = availability;
-            Price = price;
             Name = name;
             TypeProduct = typeProduct;
         }

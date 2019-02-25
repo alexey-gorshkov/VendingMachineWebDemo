@@ -1,6 +1,5 @@
 
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { VendingMachineState } from '../models/vending-machine-state';
@@ -22,9 +21,5 @@ export class VendingMachineService {
         return plainToClass(VendingMachineState, response);
       })
     );
-  }
-
-  public payProduct(guid: string): Observable<Product> {
-    return this.http.post<Product>(this.apiServiceUrl + 'CreateProduct', { guid});
   }
 }

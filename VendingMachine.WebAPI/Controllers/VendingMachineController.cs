@@ -42,30 +42,5 @@ namespace VendingMachine.WebAPI.Controllers
             var customer = await _userManager.GetUserAsync(User);
             return await _vendingMachineService.GetUserStateAsync(customer);
         }
-
-        // GET: api/VendingMachine/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/VendingMachine
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/VendingMachine/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

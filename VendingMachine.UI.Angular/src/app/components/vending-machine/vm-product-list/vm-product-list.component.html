@@ -10,13 +10,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let creator of creators">
-        <td>{{creator.name}}</td>
-        <td>{{creator.price}}</td>
-        <td>{{creator.availability}}</td>
+      <tr *ngFor="let creatorProduct of creatorProducts">
+        <td>{{creatorProduct.product.name}}</td>
+        <td>{{creatorProduct.product.price}}</td>
+        <td>{{creatorProduct.availability}}</td>
         <td>
-          <button class="btn btn-success" (click)="onClickPay(creator)"
-                    *ngIf="creator.availability">Купить</button>
+          <button class="btn btn-success" (click)="buyProduct(creatorProduct)"
+                    *ngIf="creatorProduct.availability">Купить</button>
         </td>
       </tr>
     </tbody>

@@ -49,6 +49,7 @@ namespace VendingMachine.DAL.Repositories
             await Update(deposit);
         }
 
+        // спишет депозит на сумму
         public async Task RetrieveDepositAsync(Guid userId, int sum)
         {
             var deposit = await FirstOrDefaultAsync(x => x.UserId == userId);

@@ -29,7 +29,7 @@ namespace VendingMachine.WebAPI.Controllers
             _signInManager = signInManager;
         }
 
-        // GET api/values
+        // GET api/auth
         [HttpPost, Route("login")]
         public async Task<TokenResult> LoginAsync([FromBody]LoginModel model)
         {
@@ -55,7 +55,6 @@ namespace VendingMachine.WebAPI.Controllers
 
             return new TokenResult("Incorrect Login Data");
         }
-
 
         public TokenResult GenerateJwtToken(string email, Guid userId)
         {
