@@ -38,6 +38,10 @@ export class CustomerPurseComponent implements OnInit, OnChanges {
       });
   }
 
+  public getSurrenderIsDisable() {
+    return this.amountDeposited <= 0;
+  }
+
   // запрашиваем сдачу юзера
   public getSurrenderAndHoldUser() {
     // вернуть сдачу через ответ сервера

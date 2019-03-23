@@ -1,16 +1,18 @@
 <section>
-  <h3>Покупки</h3>
+  <h3>My purchases</h3>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Наименование</th>
-        <th>Стоимость</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Date</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of userProducts">
-        <td>{{product.name}}</td>
-        <td>{{product.price}}</td>
+      <tr *ngFor="let customerProduct of userProducts">
+        <td>{{customerProduct.product.name}}</td>
+        <td>{{customerProduct.product.price}}</td>
+        <td>{{customerProduct.createdDate | date:'M/d/yy, h:mm a' }}</td>
       </tr>
     </tbody>
   </table>

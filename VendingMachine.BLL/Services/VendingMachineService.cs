@@ -62,7 +62,7 @@ namespace VendingMachine.BLL.Services
                 {
                     AmountDeposited = deposit?.AmountOfDeposit ?? 0,
                     Purse = _mapper.Map<Purse, PurseDTO>(purseCustomer),
-                    Products = _mapper.Map<List<CustomerProduct>, List<ProductDTO>>(customerProducts)
+                    Products = _mapper.Map<List<CustomerProduct>, List<CustomerProductDTO>>(customerProducts)
                 },
                 VendingMachine = new VendingMachineDTO
                 {

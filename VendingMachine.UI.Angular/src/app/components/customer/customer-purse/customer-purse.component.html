@@ -29,7 +29,7 @@
 </section>
 <section>
   <h4>
-    Внесенная сумма: {{amountDeposited | currency}}
-    <button class="btn btn-warning" (click)="getSurrenderAndHoldUser()">Получить сдачу</button>
+    Your deposit: {{amountDeposited | currency}}
+    <button class="btn btn-warning" (click)="getSurrenderAndHoldUser()" [disabled]="getSurrenderIsDisable()">Get a deposit</button>
   </h4>
 </section>

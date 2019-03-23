@@ -1,6 +1,6 @@
 import { Purse } from './purse';
 import { Type } from 'class-transformer';
-import { Product } from './product';
+import { CustomerProduct } from './customer-product';
 
 export class Customer {
     amountDeposited: number;
@@ -8,6 +8,6 @@ export class Customer {
     @Type(() => Purse)
     purse: Purse;
 
-    @Type(() => Product)
-    products: Product[];
+    @Type(() => CustomerProduct)
+    products: CustomerProduct[];
 }

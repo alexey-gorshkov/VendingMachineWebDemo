@@ -9,7 +9,7 @@ namespace VendingMachine.BLL.DTO
         // purse customer
         public PurseDTO Purse { get; set; }
 
-        public IEnumerable<ProductDTO> Products { get; set; }
+        public IEnumerable<CustomerProductDTO> Products { get; set; }
 
         // deposit amount user
         public int AmountDeposited { get; set; }

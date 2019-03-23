@@ -127,7 +127,7 @@ namespace VendingMachine.DAL.Data
                     },
                     new VMCreator
                     {
-                        Name = "CoffeeWithMilk",
+                        Name = "Coffee With Milk",
                         Availability = 20,
                         Price = 21,
                         TypeProduct = TypeProduct.CoffeeWithMilk,

@@ -16,7 +16,8 @@ namespace VendingMachine.BLL.Infrastructure.Mappings
             CreateMap<VMCreator, CreatorProductDTO>()
                 .ForMember(x => x.Product, map => map.MapFrom( src => new ProductDTO { Name = src.Name, Price = src.Price } ));
 
-            CreateMap<CustomerProduct, ProductDTO>();
+            CreateMap<CustomerProduct, CustomerProductDTO>()
+                .ForMember(x => x.Product, map => map.MapFrom( src => new ProductDTO { Name = src.Name, Price = src.Price } ) );
         }
     }
 }
