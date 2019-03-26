@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VendingMachine.BLL.DTO;
 using VendingMachine.BLL.Interfaces;
-using VendingMachine.Core.Models;
 using VendingMachine.DAL.Entities;
 
 namespace VendingMachine.WebAPI.Controllers
@@ -36,8 +35,15 @@ namespace VendingMachine.WebAPI.Controllers
                 BadRequest();
             }
 
-            await _paymentService.GetDepositCustomerAsync(Guid.Parse(userId));
-            return Ok();
+            try
+            {
+                await _paymentService.GetDepositCustomerAsync(Guid.Parse(userId));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // POST: api/Payment/AddAmountDeposit
@@ -50,8 +56,15 @@ namespace VendingMachine.WebAPI.Controllers
                 BadRequest();
             }
 
-            await _paymentService.AddAmountDepositAsync(coin, Guid.Parse(userId));
-            return Ok();
+            try
+            {
+                await _paymentService.AddAmountDepositAsync(coin, Guid.Parse(userId));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // POST: api/Payment/BuyProduct
