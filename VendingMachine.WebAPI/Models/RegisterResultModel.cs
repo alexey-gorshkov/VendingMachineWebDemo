@@ -5,25 +5,20 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.WebAPI.Models
 {
-    public class TokenResult
+    public class RegisterResultModel : BaseResultModel
     {
-        public TokenResult(string token, int expiresIn, string message = "")
+        public RegisterResultModel(string token, int expiresIn, string message = "") : base(message, true)
         {
             Token = token;
             ExpiresIn = expiresIn;
-            Message = message;
-            IsSuccess = true;
         }
 
-        public TokenResult(string message)
+        public RegisterResultModel(string message, bool isSuccess = false) : base (message, isSuccess)
         {
-            IsSuccess = false;
         }
 
         public string Token { get; set; }
         // seconds
         public int ExpiresIn { get; set; }
-        public string Message { get; set; }
-        public bool IsSuccess { get; set; }
     }
 }

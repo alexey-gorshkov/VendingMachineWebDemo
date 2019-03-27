@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VendingMachineState } from 'src/app/models/vending-machine-state';
 import { VendingMachineService } from 'src/app/services/vending-machine.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -10,7 +11,8 @@ import { VendingMachineService } from 'src/app/services/vending-machine.service'
 export class HomePageComponent implements OnInit {
   // current state VM
   vendingMachineState: VendingMachineState;
-  constructor(private apiService: VendingMachineService) { }
+  constructor(private apiService: VendingMachineService,
+              private router: Router) { }
 
   ngOnInit() {
     this.initializeVM();
@@ -21,6 +23,13 @@ export class HomePageComponent implements OnInit {
       .subscribe(result => {
         this.vendingMachineState = result;
     });
+  }
+
+  public logout() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiresDate');
+    this.router.navigate(['/login']);
   }
 
   public refreshDataVM(event: any) {

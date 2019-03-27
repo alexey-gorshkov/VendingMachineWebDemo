@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TokenResult } from '../models/tokenResult';
+import { RegisterResult } from '../models/registerResult';
 import { ILogin } from '../models/login';
 
 @Injectable({
@@ -17,6 +18,10 @@ export class AuthService {
   }
   getTokenLocal() {
     return localStorage.getItem('token');
+  }
+
+  registerUser(model: ILogin) {
+    return this.http.post<RegisterResult>(this.apiServiceUrl + 'register', model);
   }
 
   logout() {

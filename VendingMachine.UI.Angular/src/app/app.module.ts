@@ -15,6 +15,7 @@ import { VMProductListComponent } from './components/vending-machine/vm-product-
 import { AuthPageComponent } from './components/auth-page/auth-page.component';
 import { AuthGuard } from './auth.guard';
 import { JwtInterceptorService } from './jwt.interceptor.service';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { JwtInterceptorService } from './jwt.interceptor.service';
     CustomerComponent,
     HomePageComponent,
     VMProductListComponent,
-    AuthPageComponent
+    AuthPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,

@@ -6,8 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using VendingMachine.BLL.Infrastructure;
 using VendingMachine.BLL.Interfaces;
 using VendingMachine.BLL.Services;
+using VendingMachine.Core.Models;
 using VendingMachine.DAL.Data;
 using VendingMachine.DAL.Entities;
 
@@ -19,8 +21,8 @@ namespace VendingMachine.BLL
         {
             services.AddTransient<IVendingMachineService, VendingMachineService>();
             services.AddTransient<IPaymentService, PaymentService>();
-            // services.AddScoped<IImageService, GmbImageService>();
-            // services.AddSingleton(configuration.GetSection("EmailOptions").Get<EmailOptions>());
+            services.AddTransient<IEmailService, EmailService>();
+            services.AddSingleton(configuration.GetSection("EmailOptions").Get<EmailOptions>());
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -44,9 +46,17 @@ namespace VendingMachine.BLL
             services.AddDefaultIdentity<User>(config =>
             {
                 config.SignIn.RequireConfirmedEmail = true;
+                config.Tokens.EmailConfirmationTokenProvider = "emailconf";
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+            .AddDefaultTokenProviders()
+            .AddTokenProvider<EmailConfirmationTokenProvider<User>>("emailconf");
+
+            services.Configure<DataProtectionTokenProviderOptions>(options =>
+                options.TokenLifespan = TimeSpan.FromHours(5));
+            // custom lifespan for email confirmation token:
+            services.Configure<EmailConfirmationTokenProviderOptions>(options =>
+                options.TokenLifespan = TimeSpan.FromDays(1));
 
             var jwtAppSettingOptions = configuration.GetSection("JwtIssuerOptions");
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

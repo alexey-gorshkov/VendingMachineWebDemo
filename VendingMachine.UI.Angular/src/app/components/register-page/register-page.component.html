@@ -2,18 +2,18 @@
     <img class="m-4" src="../../assets/logo-vm.png" alt="" height="50" />
 </div>
 
-<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+<form class="form-register" [formGroup]="registerForm" (ngSubmit)="register()">    
+    <h1 class="h3 mb-3 font-weight-normal">New User Registration</h1>
     <p *ngIf="message" class="text-center error alert alert-danger">{{message}}</p>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="text" id="inputEmail" class="form-control" formControlName="email" placeholder="Email" autofocus />
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password" />    
+    <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password" />
 
     <span *ngIf="(email.dirty || email.touched) && email.invalid && email.hasError('required')">
         Email is required.
       </span>
-      <span *ngIf="(email.dirty || email.touched) && email.invalid && email.hasError('email')">
+    <span *ngIf="(email.dirty || email.touched) && email.invalid && email.hasError('email')">
         Value has to be a valid email address.
     </span>
     <br />
@@ -24,10 +24,11 @@
         Password must be at least 4 characters long.
     </span>
 
-    <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" [disabled]="loginForm.invalid">Sign in</button>
-    <div class="mt-3">
-        <a routerLink="" (click)="register()">Register</a>
-    </div>
+    <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" [disabled]="registerForm.invalid">Register</button>
 
+    <div class="mt-3">
+        <a routerLink="" (click)="backToLogin()">Back to Login</a>
+    </div>
+    
     <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 </form>

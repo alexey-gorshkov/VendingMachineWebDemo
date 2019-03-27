@@ -21,8 +21,8 @@ export class AuthPageComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['testuser@testuser.com', Validators.required],
-      password: ['testuser', Validators.required]
+      email: ['testuser@testuser.com', [Validators.required, Validators.email]],
+      password: ['testuser', [Validators.required, Validators.minLength(4)]]
     });
     this.returnUrl = '/home-page';
     this.authService.logout();
@@ -30,13 +30,19 @@ export class AuthPageComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
+  get email() {
+    return this.loginForm.get('email');
+  }
+  get password() {
+    return this.loginForm.get('password');
+  }
 
   login() {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
         return;
     } else {
-      const model: ILogin = { username: this.f.username.value, password: this.f.password.value };
+      const model: ILogin = { email: this.f.email.value, password: this.f.password.value };
       this.authService.getToken(model).subscribe(response => {
         if (response.isSuccess) {
           localStorage.setItem('isLoggedIn', 'true');
@@ -51,5 +57,9 @@ export class AuthPageComponent implements OnInit {
         this.message = 'Login problem';
       });
     }
+  }
+
+  public register() {
+    this.router.navigate(['/register']);
   }
 }
