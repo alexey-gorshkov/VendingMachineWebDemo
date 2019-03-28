@@ -27,7 +27,7 @@
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26",
-    "hover.css":"2.3.2"
+    "hover.css": "2.3.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
