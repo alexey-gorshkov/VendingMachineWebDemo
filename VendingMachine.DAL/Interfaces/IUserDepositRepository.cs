@@ -12,6 +12,12 @@ namespace VendingMachine.DAL.Interfaces
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<int> GetAmountDepositAsync(Guid userId);
+        /// <summary>
+        /// Добавляем депозит юзеру
+        /// </summary>
+        /// <param name="sum"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task AddAmountDepositAsync(int sum, Guid userId);
         /// <summary>
         /// Спишем весь депозит (сдача)

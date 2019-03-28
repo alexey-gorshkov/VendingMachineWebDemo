@@ -30,9 +30,8 @@ namespace VendingMachine.DAL.Repositories
 
         public async Task AddCoinsAsync(Guid userId, IEnumerable<Coin> coins)
         {
-            var purse = await GetAll()
-                .Include(x => x.PurseCoins)
-                .SingleOrDefaultAsync(x => x.ApplicationUserId == userId);
+            var purse = await FirstOrDefaultAsync(x => x.ApplicationUserId == userId,
+                include: sourse => sourse.Include(m => m.PurseCoins));
 
             foreach (var coinsGroup in coins.GroupBy(x => x.TypeCoin))
             {
@@ -52,9 +51,8 @@ namespace VendingMachine.DAL.Repositories
 
         public async Task RemoveCoinAsync(Guid userId, TypeCoin typeCoin)
         {
-            var purse = await GetAll()
-                .Include(x => x.PurseCoins)
-                .SingleOrDefaultAsync(x => x.ApplicationUserId == userId);
+            var purse = await FirstOrDefaultAsync(x => x.ApplicationUserId == userId,
+                include: sourse => sourse.Include(m => m.PurseCoins));
 
             PurseCoin findCoins = purse.PurseCoins.FirstOrDefault(x => x.TypeCoin == typeCoin);
 
@@ -69,9 +67,8 @@ namespace VendingMachine.DAL.Repositories
 
         public async Task<IEnumerable<Coin>> RemoveCoinsAsync(Guid userId, int sum)
         {
-            Purse purse = await GetAll()
-                .Include(x => x.PurseCoins)
-                .SingleOrDefaultAsync(x => x.ApplicationUserId == userId);
+            var purse = await FirstOrDefaultAsync(x => x.ApplicationUserId == userId,
+                include: sourse => sourse.Include(m => m.PurseCoins));
 
             var prepareCoins = GetCoinsBySum(purse, sum);
             if (prepareCoins.Sum(x=>x.Price) != sum)

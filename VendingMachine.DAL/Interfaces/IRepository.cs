@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ namespace VendingMachine.DAL.Interfaces
 
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate = null);
 
-        //Task<TEntity> GetById(TKey id);
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null);
 
         Task<TKey> Create(TEntity entity);
 
