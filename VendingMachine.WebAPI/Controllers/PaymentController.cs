@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VendingMachine.BLL.DTO;
 using VendingMachine.BLL.Interfaces;
@@ -16,13 +15,10 @@ namespace VendingMachine.WebAPI.Controllers
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentService _paymentService;
-        private readonly UserManager<User> _userManager;
 
-        public PaymentController(IPaymentService paymentService,
-            UserManager<User> userManager)
+        public PaymentController(IPaymentService paymentService)
         {
             _paymentService = paymentService;
-            _userManager = userManager;
         }
 
         // PUT: api/Payment/GetDepositCustomer

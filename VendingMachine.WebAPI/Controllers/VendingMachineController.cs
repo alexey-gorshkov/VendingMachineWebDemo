@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -14,15 +13,12 @@ namespace VendingMachine.WebAPI.Controllers
     [ApiController]
     public class VendingMachineController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IVendingMachineService _vendingMachineService;
 
-        public VendingMachineController(IMapper mapper,
-            UserManager<User> userManager,
+        public VendingMachineController(UserManager<User> userManager,
             IVendingMachineService vendingMachineService)
         {
-            _mapper = mapper;
             _userManager = userManager;
             _vendingMachineService = vendingMachineService;
         }
