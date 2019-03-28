@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -67,6 +68,14 @@ namespace VendingMachine.WebAPI.Controllers
         [HttpPost, Route("BuyProduct")]
         public async Task<ActionResult<ProductDTO>> BuyProduct(CreatorProductDTO creatorProductDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                var errorMsgModelArray = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage));
+                return BadRequest(errorMsgModelArray);
+            }
+
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
             {
