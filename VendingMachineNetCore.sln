@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.BLL", "Vendi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.WebAPI", "VendingMachine.WebAPI\VendingMachine.WebAPI.csproj", "{8BA1CB2E-A2D0-4D28-914B-13BF4C54C81E}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AngularUI", "VendingMachine.UI.Angular\", "{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "VendingMachine.UI.Angular", "VendingMachine.UI.Angular\", "{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_48476"
@@ -34,6 +34,30 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Core", "VendingMachine.Core\VendingMachine.Core.csproj", "{067EC5AE-F1C7-4D0C-B4F9-0BC92F34C703}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Tests", "VendingMachine.Tests\VendingMachine.Tests.csproj", "{ECAEF11A-343D-4939-B54D-236404D9F019}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "VendingMachine.UI.ReactJs", "VendingMachine.UI.ReactJs\", "{6605AB84-AAD6-4DFB-B35C-44624CF5BA46}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_14888"
+		Debug.AspNetCompiler.PhysicalPath = "VendingMachine.UI.ReactJs\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_14888\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_14888"
+		Release.AspNetCompiler.PhysicalPath = "VendingMachine.UI.ReactJs\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_14888\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "14888"
+		SlnRelativePath = "VendingMachine.UI.ReactJs\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{F5E8E27B-614D-4272-92E5-D77B0E4D607F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,9 +89,17 @@ Global
 		{ECAEF11A-343D-4939-B54D-236404D9F019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECAEF11A-343D-4939-B54D-236404D9F019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECAEF11A-343D-4939-B54D-236404D9F019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6605AB84-AAD6-4DFB-B35C-44624CF5BA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6605AB84-AAD6-4DFB-B35C-44624CF5BA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6605AB84-AAD6-4DFB-B35C-44624CF5BA46}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{6605AB84-AAD6-4DFB-B35C-44624CF5BA46}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8} = {F5E8E27B-614D-4272-92E5-D77B0E4D607F}
+		{6605AB84-AAD6-4DFB-B35C-44624CF5BA46} = {F5E8E27B-614D-4272-92E5-D77B0E4D607F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F26C2330-BF2F-4B94-A5C5-1A3DC6F0D95E}
