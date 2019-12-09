@@ -9,7 +9,7 @@ import { ILogin } from '../models/login';
 })
 export class AuthService {
 
-  private apiServiceUrl = 'https://localhost:44341/api/auth/';
+  private apiServiceUrl = 'https://localhost:5001/api/auth/';
 
   constructor(private http: HttpClient) { }
 

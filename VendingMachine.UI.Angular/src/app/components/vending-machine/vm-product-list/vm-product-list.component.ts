@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CreatorProduct } from 'src/app/models/creator';
 import { PaymentService } from 'src/app/services/payment.service';
-import { TypeProduct } from 'src/app/models/enums';
-import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-vm-product-list',
@@ -18,7 +16,6 @@ export class VMProductListComponent implements OnInit {
   ngOnInit() {
   }
 
-  // покупка товара
   public buyProduct(creatorProduct: CreatorProduct) {
     this.service.buyProduct(creatorProduct)
       .subscribe(result => {
@@ -26,7 +23,7 @@ export class VMProductListComponent implements OnInit {
           this.refreshData.emit(null);
         }
     },
-    error => { alert(error); }
+    error => {  }
     );
   }
 }

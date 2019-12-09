@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class VendingMachineService {
 
-  private apiServiceUrl = 'https://localhost:44341/api/VendingMachine/';
+  private apiServiceUrl = 'https://localhost:5001/api/VendingMachine/';
 
   constructor(private http: HttpClient) { }
 

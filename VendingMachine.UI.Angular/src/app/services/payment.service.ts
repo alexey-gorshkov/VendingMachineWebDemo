@@ -5,36 +5,37 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Product } from '../models/product';
 import { CreatorProduct } from '../models/creator';
 import { catchError } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
-  private apiServiceUrl = 'https://localhost:44341/api/Payment/';
+  private apiServiceUrl = 'https://localhost:5001/api/Payment/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   public pushAmountDeposited(coin: Coin) {
     return this.http.post(this.apiServiceUrl + 'AddAmountDeposit', coin)
     .pipe(
-      catchError(this.handleError)
+      catchError((e) => this.handleError(e, this.toastr))
     );
   }
 
   public getSurrenderUser(): Observable<Array<Coin>> {
     return this.http.put<Array<Coin>>(this.apiServiceUrl + 'GetDepositCustomer', {}).pipe(
-      catchError(this.handleError)
+      catchError((e) => this.handleError(e, this.toastr))
     );
   }
 
   public buyProduct(creatorProduct: CreatorProduct): Observable<Product> {
     return this.http.post<Product>(this.apiServiceUrl + 'BuyProduct', creatorProduct).pipe(
-      catchError(this.handleError)
+      catchError((e) => this.handleError(e, this.toastr))
     );
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse, toastr: ToastrService) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -44,6 +45,8 @@ export class PaymentService {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
+
+      toastr.error('Error!', error.error);
 
       if (error.error) {
         return throwError (error.error);

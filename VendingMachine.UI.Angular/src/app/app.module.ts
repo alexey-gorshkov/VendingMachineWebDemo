@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +17,8 @@ import { AuthPageComponent } from './components/auth-page/auth-page.component';
 import { AuthGuard } from './auth.guard';
 import { JwtInterceptorService } from './jwt.interceptor.service';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { RegisterPageComponent } from './components/register-page/register-page.
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [
     AuthGuard,
