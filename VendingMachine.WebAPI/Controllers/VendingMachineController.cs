@@ -27,14 +27,6 @@ namespace VendingMachine.WebAPI.Controllers
         [HttpGet]
         public async Task<VendingMachineStateDTO> GetAsync()
         {
-            // user ----------
-            // свой кошелек +
-            // депозит +
-            // купленные товары -
-
-            // vm ------------
-            // доступные товары +
-
             var customer = await _userManager.GetUserAsync(User);
             return await _vendingMachineService.GetUserStateAsync(customer);
         }

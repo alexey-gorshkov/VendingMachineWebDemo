@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.BLL", "Vendi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.WebAPI", "VendingMachine.WebAPI\VendingMachine.WebAPI.csproj", "{8BA1CB2E-A2D0-4D28-914B-13BF4C54C81E}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AngularUI", "VendingMachine.UI.Angular\", "{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "VendingMachine.UI.AngularUI", "VendingMachine.UI.Angular\", "{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_48476"
@@ -28,12 +28,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AngularUI", "VendingMachine
 		SlnRelativePath = "VendingMachine.UI.Angular\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.DAL", "VendingMachine.DAL\VendingMachine.DAL.csproj", "{71B9B49A-BE75-4E91-9F93-33583893E066}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Core", "VendingMachine.Core\VendingMachine.Core.csproj", "{067EC5AE-F1C7-4D0C-B4F9-0BC92F34C703}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Tests", "VendingMachine.Tests\VendingMachine.Tests.csproj", "{ECAEF11A-343D-4939-B54D-236404D9F019}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "VendingMachine.UI.ReactJs", "VendingMachine.UI.ReactJs\", "{6605AB84-AAD6-4DFB-B35C-44624CF5BA46}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -56,6 +50,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "VendingMachine.UI.ReactJs",
 		SlnRelativePath = "VendingMachine.UI.ReactJs\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.DAL", "VendingMachine.DAL\VendingMachine.DAL.csproj", "{71B9B49A-BE75-4E91-9F93-33583893E066}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Core", "VendingMachine.Core\VendingMachine.Core.csproj", "{067EC5AE-F1C7-4D0C-B4F9-0BC92F34C703}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Tests", "VendingMachine.Tests\VendingMachine.Tests.csproj", "{ECAEF11A-343D-4939-B54D-236404D9F019}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{F5E8E27B-614D-4272-92E5-D77B0E4D607F}"
 EndProject
