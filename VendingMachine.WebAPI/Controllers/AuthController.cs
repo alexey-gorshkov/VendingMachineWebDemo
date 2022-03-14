@@ -153,16 +153,18 @@ namespace VendingMachine.WebAPI.Controllers
 
         private TokenResultModel GenerateJwtToken(string email, Guid userId)
         {
+            // get options
+            var jwtAppSettingOptions = _configuration.GetSection("JwtIssuerOptions");
+
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, email),
-                new Claim(ClaimTypes.NameIdentifier, userId.ToString())
-            };
-
-            // get options
-            var jwtAppSettingOptions = _configuration.GetSection("JwtIssuerOptions");
+                new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                new Claim(JwtRegisteredClaimNames.Aud, jwtAppSettingOptions["JwtAudience"]),
+                new Claim(JwtRegisteredClaimNames.Iss, jwtAppSettingOptions["JwtIssuer"])
+            };            
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtAppSettingOptions["JwtKey"]));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -170,7 +172,7 @@ namespace VendingMachine.WebAPI.Controllers
 
             var tokeOptions = new JwtSecurityToken(
                 issuer: jwtAppSettingOptions["JwtIssuer"],
-                audience: jwtAppSettingOptions["JwtIssuer"],
+                audience: jwtAppSettingOptions["JwtAudience"],
                 claims: claims,
                 expires: expires,
                 signingCredentials: signinCredentials

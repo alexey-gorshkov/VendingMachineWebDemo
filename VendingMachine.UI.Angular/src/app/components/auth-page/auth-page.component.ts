@@ -14,6 +14,7 @@ export class AuthPageComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
   message: string;
+  currentDate: Date;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -26,6 +27,7 @@ export class AuthPageComponent implements OnInit {
     });
     this.returnUrl = '/home-page';
     this.authService.logout();
+    this.currentDate = new Date();
   }
 
   // convenience getter for easy access to form fields

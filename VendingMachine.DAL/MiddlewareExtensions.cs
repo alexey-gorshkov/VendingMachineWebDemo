@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
-using VendingMachine.DAL.Data;
+﻿using VendingMachine.DAL.Data;
+using Microsoft.AspNetCore.Builder;
 
 namespace VendingMachine.DAL
 {

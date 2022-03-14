@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.BLL", "VendingMachine.BLL\VendingMachine.BLL.csproj", "{61EB3A60-0930-42CC-A08D-544050D3512C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.WebAPI", "VendingMachine.WebAPI\VendingMachine.WebAPI.csproj", "{8BA1CB2E-A2D0-4D28-914B-13BF4C54C81E}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "VendingMachine.UI.Angular", "VendingMachine.UI.Angular\", "{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AngularUI", "VendingMachine.UI.Angular\", "{E7B93D14-6C98-41F0-BFDC-48E3777B9EA8}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_48476"
 		Debug.AspNetCompiler.PhysicalPath = "VendingMachine.UI.Angular\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_48476\"
@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Tests", "Ven
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "VendingMachine.UI.ReactJs", "VendingMachine.UI.ReactJs\", "{6605AB84-AAD6-4DFB-B35C-44624CF5BA46}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_14888"
 		Debug.AspNetCompiler.PhysicalPath = "VendingMachine.UI.ReactJs\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_14888\"
