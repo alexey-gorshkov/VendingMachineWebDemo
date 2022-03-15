@@ -8,7 +8,7 @@ import { Purse } from 'src/app/models/purse';
 })
 export class VMPurseComponent implements OnInit {
 
-  @Input() purseVM: Purse;
+  @Input() purseVM?: Purse;
 
   constructor() { }
 

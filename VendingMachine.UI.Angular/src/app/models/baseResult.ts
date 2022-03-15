@@ -1,4 +1,4 @@
-export class BaseResult {
+export interface BaseResult {
     message: string;
     isSuccess: boolean;
 }

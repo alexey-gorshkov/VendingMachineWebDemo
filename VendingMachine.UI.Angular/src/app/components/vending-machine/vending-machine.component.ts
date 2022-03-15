@@ -5,17 +5,16 @@ import { VendingMachineService } from 'src/app/services/vending-machine.service'
 @Component({
   selector: 'app-vending-machine',
   templateUrl: './vending-machine.component.html',
-  styleUrls: ['./vending-machine.component.css']
+  styleUrls: ['./vending-machine.component.css'],
 })
 export class VendingMachineComponent implements OnInit {
   // состояние машины
-  @Input() vendingMachine: VendingMachine;
+  @Input() vendingMachine?: VendingMachine;
   @Output() refreshDataVM: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private apiService: VendingMachineService) { }
+  constructor(private apiService: VendingMachineService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public refreshData(event: any) {
     this.refreshDataVM.emit(null);

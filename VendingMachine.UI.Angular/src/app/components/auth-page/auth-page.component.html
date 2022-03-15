@@ -10,17 +10,17 @@
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password" />    
 
-    <span *ngIf="(email.dirty || email.touched) && email.invalid && email.hasError('required')">
+    <span *ngIf="(emailField.dirty || emailField.touched) && emailField.invalid && emailField.hasError('required')">
         Email is required.
       </span>
-      <span *ngIf="(email.dirty || email.touched) && email.invalid && email.hasError('email')">
+      <span *ngIf="(emailField.dirty || emailField.touched) && emailField.invalid && emailField.hasError('email')">
         Value has to be a valid email address.
     </span>
     <br />
-    <span *ngIf="(password.dirty || password.touched) && password.invalid && password.hasError('required')">
+    <span *ngIf="(passwordField.dirty || passwordField.touched) && passwordField.invalid && passwordField.hasError('required')">
         Password is required.
     </span>
-    <span *ngIf="(password.dirty || password.touched) && password.invalid && password.hasError('minlength')">
+    <span *ngIf="(passwordField.dirty || passwordField.touched) && passwordField.invalid && passwordField.hasError('minlength')">
         Password must be at least 4 characters long.
     </span>
 

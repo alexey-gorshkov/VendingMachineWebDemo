@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TokenResult } from '../models/tokenResult';
-import { RegisterResult } from '../models/registerResult';
 import { ILogin } from '../models/login';
+import { BaseResult } from '../models/baseResult';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   registerUser(model: ILogin) {
-    return this.http.post<RegisterResult>(this.apiServiceUrl + 'register', model);
+    return this.http.post<BaseResult>(this.apiServiceUrl + 'register', model);
   }
 
   logout() {

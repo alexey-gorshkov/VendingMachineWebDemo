@@ -7,47 +7,53 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
-
   registerForm: FormGroup;
   returnUrl: string;
-  message: string;
+  message = '';
 
-  constructor(private formBuilder: FormBuilder,
-              private router: Router,
-              private authService: AuthService) { }
-
-  ngOnInit() {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4)]]
+      password: ['', [Validators.required, Validators.minLength(4)]],
     });
     this.returnUrl = '/home-page';
     this.authService.logout();
   }
 
+  ngOnInit() {}
+
   // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
-  get email() {
+  get emailField() {
     return this.registerForm.get('email');
   }
-  get password() {
+  get passwordField() {
     return this.registerForm.get('password');
   }
 
   public register() {
     // stop here if form is invalid
     if (this.registerForm.invalid) {
-        return;
+      return;
     } else {
-      const model: ILogin = { email: this.f.email.value, password: this.f.password.value };
-      this.authService.registerUser(model).subscribe(response => {
-        this.message = response.message;
-      }, (err: any) => {
-        this.message = 'Register problem';
-      });
+      const model: ILogin = {
+        email: this.emailField?.value,
+        password: this.passwordField?.value,
+      };
+      this.authService.registerUser(model).subscribe(
+        (response) => {
+          this.message = response.message;
+        },
+        (err: any) => {
+          this.message = 'Register problem';
+        }
+      );
     }
   }
 

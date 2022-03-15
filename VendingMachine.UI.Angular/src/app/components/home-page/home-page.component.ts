@@ -6,22 +6,24 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
   // current state VM
-  vendingMachineState: VendingMachineState;
-  constructor(private apiService: VendingMachineService,
-              private router: Router) { }
+  vendingMachineState?: VendingMachineState;
+
+  constructor(
+    private apiService: VendingMachineService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.initializeVM();
   }
 
   public initializeVM() {
-    this.apiService.initializeVM()
-      .subscribe(result => {
-        this.vendingMachineState = result;
+    this.apiService.initializeVM().subscribe((result) => {
+      this.vendingMachineState = result;
     });
   }
 
