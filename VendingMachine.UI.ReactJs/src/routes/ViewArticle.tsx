@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ArticleView from '../pages/articles/components/ArticleView';
 import Main from '../layouts/Main';
 import BackLink from '../common/components/BackLink';
-import { RootState } from 'src/store/types';
+import { RootState } from 'typesafe-actions';
 
 type OwnProps = {
 };

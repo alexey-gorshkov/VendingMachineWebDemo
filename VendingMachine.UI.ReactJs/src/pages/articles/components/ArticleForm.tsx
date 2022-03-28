@@ -7,31 +7,35 @@ import { connect } from 'react-redux';
 
 import { createArticleAsync, updateArticleAsync } from '../store/actions';
 import { Article } from '../store/types';
+import { RootState } from 'typesafe-actions';
 // import { getPath } from '../../../router-paths';
 
 type FormValues = Pick<Article, 'title' | 'content'> & {};
 
-const dispatchProps = {
-  createArticle: (values: FormValues) =>
-    createArticleAsync.request({
-      id: cuid(),
-      ...values,
-    }),
-  updateArticle: (values: Article) =>
-    updateArticleAsync.request({
-      ...values,
-    }),
-  redirectToListing: () => { /*push('/')*/  } ,
-};
+// const dispatchProps = {
+//   createArticle: (values: FormValues) =>
+//     createArticleAsync.request({
+//       id: cuid(),
+//       ...values,
+//     }),
+//   updateArticle: (values: Article) =>
+//     updateArticleAsync.request({
+//       ...values,
+//     }),
+//   redirectToListing: () => { /*push('/')*/  } ,
+// };
 
-type Props = typeof dispatchProps & {
+type Props = {
   article?: Article;
+  isSubmitting?: boolean; 
+  isDirty?: boolean;
 };
 
-class InnerForm extends React.Component<Props & FormikProps<FormValues>> {
-  const { isSubmitting, dirty } = this.props;
-
+class InnerForm extends React.Component<Props> {
+  
   render() {
+    const { isSubmitting = false, isDirty = false } = this.props;
+
     return (
       <Form>
         <div>
@@ -61,35 +65,43 @@ class InnerForm extends React.Component<Props & FormikProps<FormValues>> {
           <ErrorMessage name="content" />
         </div>
 
-        <button type="submit" disabled={!dirty || isSubmitting}>
+        <button type="submit" disabled={!isDirty || isSubmitting}>
           Submit
         </button>
       </Form>
     );
   }
-};
+}
 
-export default compose(
-  connect(
-    null,
-    dispatchProps
-  ),
-  withFormik<Props, FormValues>({
-    enableReinitialize: true,
-    // initialize values
-    mapPropsToValues: ({ article: data }) => ({
-      title: (data && data.title) || '',
-      content: (data && data.content) || '',
-    }),
-    handleSubmit: (values, form) => {
-      if (form.props.article != null) {
-        form.props.updateArticle({ ...form.props.article, ...values });
-      } else {
-        form.props.createArticle(values);
-      }
+const mapStateToProps = (state: RootState, ownProps: Props) => ({
+  // article: state.articles.articles.find(
+  //   i => i.id === ownProps.match.params.articleId
+  // )
+});
 
-      form.props.redirectToListing();
-      form.setSubmitting(false);
-    },
-  })
-)(InnerForm);
+export default connect(mapStateToProps)(InnerForm);
+
+// export default compose(
+//   connect(
+//     null,
+//     dispatchProps
+//   ),
+//   withFormik<Props, FormValues>({
+//     enableReinitialize: true,
+//     // initialize values
+//     mapPropsToValues: ({ article: data }) => ({
+//       title: (data && data.title) || '',
+//       content: (data && data.content) || '',
+//     }),
+//     handleSubmit: (values, form) => {
+//       if (form.props.article != null) {
+//         form.props.updateArticle({ ...form.props.article, ...values });
+//       } else {
+//         form.props.createArticle(values);
+//       }
+
+//       form.props.redirectToListing();
+//       form.setSubmitting(false);
+//     },
+//   })
+// )(InnerForm);

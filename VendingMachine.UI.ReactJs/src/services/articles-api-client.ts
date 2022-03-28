@@ -1,7 +1,7 @@
 import { Article } from 'src/pages/articles/store/types';
-import * as localStorage from './local-storage-service';
+//import * as localStorage from './local-storage-service';
 
-let articles: Article[] = localStorage.get<Article[]>('articles') || [];
+let articles: Article[] = [];
 
 const TIMEOUT = 750;
 

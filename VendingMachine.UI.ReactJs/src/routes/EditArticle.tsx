@@ -4,8 +4,8 @@ import ArticleForm from '../pages/articles/components/ArticleForm';
 import Main from '../layouts/Main';
 import BackLink from '../common/components/BackLink';
 import { connect } from 'react-redux';
-import { RootState } from 'src/store/types';
 import { useParams } from "react-router-dom";
+import { RootState } from 'typesafe-actions';
 
 type Props = {
 };

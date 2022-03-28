@@ -1,7 +1,7 @@
+import { Epic } from 'redux-observable';
 import { from, of } from 'rxjs';
 import { filter, switchMap, map, catchError } from 'rxjs/operators';
-import { RootEpic } from 'src/store/types';
-import { isActionOf } from 'typesafe-actions';
+import { isActionOf, RootAction, RootState, Services } from 'typesafe-actions';
 
 import {
   loadArticlesAsync,
@@ -9,6 +9,8 @@ import {
   updateArticleAsync,
   deleteArticleAsync,
 } from './actions';
+
+type RootEpic = Epic<RootAction, RootAction, RootState, Services>;
 
 export const loadArticlesEpic: RootEpic = (action$, state$, { api }) =>
   action$.pipe(

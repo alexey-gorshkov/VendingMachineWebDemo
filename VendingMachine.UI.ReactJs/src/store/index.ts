@@ -1,5 +1,3 @@
-import { RootAction, RootState } from './types';
-import { Services } from '../services/types';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { createBrowserHistory } from 'history';
@@ -9,6 +7,7 @@ import { composeEnhancers } from './utils';
 import rootReducer from './root-reducer';
 import rootEpic from './root-epic';
 import services from '../services';
+import { RootAction, RootState, Services } from 'typesafe-actions';
 
 export const epicMiddleware = createEpicMiddleware<
   RootAction,

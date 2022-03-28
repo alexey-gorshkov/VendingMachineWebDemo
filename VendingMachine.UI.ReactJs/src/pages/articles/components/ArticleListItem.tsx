@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { deleteArticleAsync } from '../store/actions';
 import { getPath } from '../../../router-paths';
-import FlexRow from '../../../common/components/FlexRow';
+// import FlexRow from '../../../common/components/FlexRow';
 import { Link } from 'react-router-dom';
 import { Article } from '../store/types';
 
@@ -17,22 +17,23 @@ type Props = typeof dispatchProps & {
 };
 
 const ArticleListItem = React.memo<Props>(({ article, deleteArticle }) => {
-  return (
-    <FlexRow>
-      <div style={getStyle()}>{article.title}</div>
-      <FlexRow itemsSpacing={20}>
-        <Link to={getPath('viewArticle', article.id)}>View</Link>
-        <Link to={getPath('editArticle', article.id)}>Edit</Link>
-        <div
-          className="link"
-          onClick={() => deleteArticle(article)}
-          style={{ color: 'darkred' }}
-        >
-          Delete
-        </div>
-      </FlexRow>
-    </FlexRow>
-  );
+  return null;
+  // return (
+  //   <FlexRow>
+  //     <div style={getStyle()}>{article.title}</div>
+  //     <FlexRow itemsSpacing={20}>
+  //       <Link to={getPath('viewArticle', article.id)}>View</Link>
+  //       <Link to={getPath('editArticle', article.id)}>Edit</Link>
+  //       <div
+  //         className="link"
+  //         onClick={() => deleteArticle(article)}
+  //         style={{ color: 'darkred' }}
+  //       >
+  //         Delete
+  //       </div>
+  //     </FlexRow>
+  //   </FlexRow>
+  // );
 }, areEqual);
 
 const getStyle = (): React.CSSProperties => ({

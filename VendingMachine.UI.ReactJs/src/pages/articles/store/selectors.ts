@@ -1,5 +1,10 @@
 // import { createSelector } from 'reselect';
+import { ArticleState } from "./reducer";
 
-import { RootState } from "src/store/types";
+const getArticles = (state: ArticleState) => state.articles;
+const isLoadingArticles = (state: ArticleState): boolean => state.isLoadingArticles;
 
-export const getArticles = (state: RootState) => state.articles.articles;
+export default {
+    getArticles,
+    isLoadingArticles
+}
