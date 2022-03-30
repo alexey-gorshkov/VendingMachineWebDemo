@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { RootState } from 'src/store/types';
+import { RootState } from 'typesafe-actions';
 
 import { getPath } from '../../../router-paths';
 

@@ -3,9 +3,10 @@ import { combineReducers } from 'redux';
 //import { routerReducer } from 'react-router-redux';
 import { History } from 'history';
 
-import articlesReducer from '../pages/articles/store/reducer';
+import articlesReducer, { ArticleState } from '../pages/articles/store/reducer';
+import { Reducer } from 'typesafe-actions';
 
-const rootReducer = (history: History) => combineReducers({
+const rootReducer = combineReducers({
   //router: routerReducer,
   articles: articlesReducer
 });

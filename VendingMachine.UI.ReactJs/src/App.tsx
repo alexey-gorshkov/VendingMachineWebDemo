@@ -21,7 +21,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path={getPath('addArticle')} element={<AddArticle />} />
+            <Route path={getPath('addArticle')} element={<AddArticle />} />
             <Route
               path={getPath('editArticle', ':articleId')}
               element={<EditArticle />}
@@ -30,7 +30,7 @@ class App extends React.Component {
               path={getPath('viewArticle', ':articleId')}
               element={<ViewArticle />}
             />
-            <Route element={() => <div>Page not found!</div>} /> */}
+            <Route element={() => <div>Page not found!</div>} />
           </Routes>
         </BrowserRouter>
          

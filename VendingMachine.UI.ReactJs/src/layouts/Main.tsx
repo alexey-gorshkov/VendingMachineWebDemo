@@ -24,8 +24,9 @@ const Main: FC<Props> = ({ children, renderActionsMenu }) => (
             Demo App
           </Link>
         </FlexRow>
-        {renderActionsMenu && renderActionsMenu()}
+        
       </FlexRow> */}
+      {renderActionsMenu && renderActionsMenu()}
     </header>
     <main className="App-main">{children}</main>
   </div>

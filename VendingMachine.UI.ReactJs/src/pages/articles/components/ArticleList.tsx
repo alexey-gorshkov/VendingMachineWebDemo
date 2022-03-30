@@ -5,6 +5,7 @@ import selectors from '../store/selectors';
 import ArticleListItem from './ArticleListItem';
 import { Article } from '../store/types';
 import { ArticleState } from '../store/reducer';
+import { RootState } from 'typesafe-actions';
 
 //type Props = ReturnType<typeof mapStateToProps> & typeof dispatchProps;
 
@@ -30,7 +31,7 @@ class ArticleList extends React.Component<Props> {
     if (articles.length === 0) {
       return (
         <p style={{ textAlign: 'center' }}>
-          No articles yet, please create new...
+          No articles yet, please create new ....
         </p>
       );
     }
@@ -47,9 +48,9 @@ class ArticleList extends React.Component<Props> {
   }
 };
 
-const mapStateToProps = (state: ArticleState) => ({
-  isLoading: selectors.isLoadingArticles(state),
-  articles: selectors.getArticles(state),
+const mapStateToProps = (state: RootState) => ({
+  isLoading: selectors.isLoadingArticles(state.articles),
+  articles: selectors.getArticles(state.articles),
 });
 const dispatchProps = {};
 

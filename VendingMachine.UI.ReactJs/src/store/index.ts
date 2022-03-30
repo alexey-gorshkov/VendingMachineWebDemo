@@ -28,7 +28,7 @@ const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 const initialState = {};
 
 // create store
-const store = createStore(rootReducer(history), initialState, enhancer);
+const store = createStore(rootReducer, initialState, enhancer);
 
 epicMiddleware.run(rootEpic);
 

@@ -12,19 +12,6 @@ import { RootState } from 'typesafe-actions';
 
 type FormValues = Pick<Article, 'title' | 'content'> & {};
 
-// const dispatchProps = {
-//   createArticle: (values: FormValues) =>
-//     createArticleAsync.request({
-//       id: cuid(),
-//       ...values,
-//     }),
-//   updateArticle: (values: Article) =>
-//     updateArticleAsync.request({
-//       ...values,
-//     }),
-//   redirectToListing: () => { /*push('/')*/  } ,
-// };
-
 type Props = {
   article?: Article;
   isSubmitting?: boolean; 
@@ -79,7 +66,20 @@ const mapStateToProps = (state: RootState, ownProps: Props) => ({
   // )
 });
 
-export default connect(mapStateToProps)(InnerForm);
+const dispatchProps = {
+  createArticle: (values: FormValues) =>
+    createArticleAsync.request({
+      id: cuid(),
+      ...values,
+    }),
+  updateArticle: (values: Article) =>
+    updateArticleAsync.request({
+      ...values,
+    }),
+  redirectToListing: () => { /*push('/')*/  } ,
+};
+
+export default connect(mapStateToProps, dispatchProps)(InnerForm);
 
 // export default compose(
 //   connect(
