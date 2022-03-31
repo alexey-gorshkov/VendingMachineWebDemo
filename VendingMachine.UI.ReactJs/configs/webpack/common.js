@@ -36,9 +36,13 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(scss|sass)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
       },
+      // {
+      //   test: /\.(scss|sass)$/,
+      //   use: ['style-loader', 'css-loader', 'sass-loader'],
+      // },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
