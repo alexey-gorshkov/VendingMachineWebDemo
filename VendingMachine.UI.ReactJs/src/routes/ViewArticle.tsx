@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ArticleView from '../pages/articles/components/ArticleView';
-import Main from '../layouts/Main';
+import Main from '../layouts/main';
 import BackLink from '../common/components/BackLink';
 import { RootState } from 'typesafe-actions';
 

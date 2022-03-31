@@ -12,6 +12,10 @@ import { getPath } from './router-paths';
 import Home from './routes/Home';
 import { hot } from 'react-hot-loader/root'
 import { BrowserRouter } from "react-router-dom";
+import PrivateRoute from "./security/privateRoute";
+import RestrictedRoute from "./security/restrictedRoute";
+import LoginPage from "./pages/login/loginPage";
+import RegisterPage from "./pages/register/registerPage";
 
 class App extends React.Component {
   render() {
@@ -20,7 +24,19 @@ class App extends React.Component {
         {/* <ConnectedRouter history={history}> */}
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+
+            <Route path="/" element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            } />
+            <Route path="/login" element={
+              <RestrictedRoute>
+                <LoginPage />
+              </RestrictedRoute>
+            } />
+            <Route path="/register" element={<RegisterPage />} />
+
             <Route path={getPath('addArticle')} element={<AddArticle />} />
             <Route
               path={getPath('editArticle', ':articleId')}
@@ -30,6 +46,7 @@ class App extends React.Component {
               path={getPath('viewArticle', ':articleId')}
               element={<ViewArticle />}
             />
+            
             <Route element={() => <div>Page not found!</div>} />
           </Routes>
         </BrowserRouter>
