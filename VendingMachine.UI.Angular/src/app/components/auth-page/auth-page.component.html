@@ -5,8 +5,10 @@
 <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <p *ngIf="message" class="text-center error alert alert-danger">{{message}}</p>
+    
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="text" id="inputEmail" class="form-control" formControlName="email" placeholder="Email" autofocus />
+    
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password" />    
 
