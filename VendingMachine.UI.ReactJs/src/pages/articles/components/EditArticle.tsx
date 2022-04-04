@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import ArticleForm from '../pages/articles/components/ArticleForm';
-import Main from '../layouts/main';
+import Main from '../common/layouts/main';
 import BackLink from '../common/components/BackLink';
 import { connect } from 'react-redux';
 import { useParams } from "react-router-dom";

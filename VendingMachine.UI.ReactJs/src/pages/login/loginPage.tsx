@@ -6,103 +6,122 @@ import {
   Field,
   withFormik,
   ErrorMessage,
-  FormikHelpers,
+  FormikHelpers  
 } from 'formik';
+import { FormValues } from './store/types';
+import { RootState } from 'typesafe-actions';
+import { loginUserAsync } from './store/actions';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-interface Values {
-  email: string;
-  password: string;
-}
+type Props = ReturnType<typeof mapStateToProps> & typeof dispatchProps;
 
-class LoginPage extends Component<any, any> {
+type PropsWithFormik = Props & FormikProps<FormValues>;
+
+class LoginPage extends Component<PropsWithFormik, any> {  
+
   getYear = () => {
     return new Date().getFullYear();
   };
 
   render() {
-    const { isSubmitting = false, isDirty = false } = this.props;
+    const { isSubmitting = false, dirty = false } = this.props;
 
     return (
       <React.Fragment>
         <div className="text-center">
-          <img className="m-4" src="/assets/img/logo-vm.png" alt="" height="50" />
+          <img
+            className="m-4"
+            src="/assets/img/logo-vm.png"
+            alt=""
+            height="50"
+          />
         </div>
-        <Formik
-          initialValues={{
-            email: 'testuser@testuser.com',
-            password: 'testuser',
-          }}
-          validate={(values) => {
-            const errors: any = {};
-            if (!values.email) {
-              errors.email = 'Required';
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = 'Invalid email address';
-            }
-            return errors;
-          }}
-          onSubmit={(values: Values,
-            { setSubmitting }: FormikHelpers<Values>
-          ) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 500);
-          }}
-        >
-          <Form className="form-signin">
-            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+        
+        <Form className="form-signin">
+          <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-            <label htmlFor="email" className="sr-only">
-              Email address
-            </label>
-            <Field
-              className="form-control"
-              name="email"
-              placeholder="Email address"
-              component="input"
-              type="text"
-              required
-              autoFocus
-            />
-            <ErrorMessage name="email" />
+          <label htmlFor="email" className="sr-only">
+            Email address
+          </label>
+          <Field
+            className="form-control"
+            name="email"
+            placeholder="Email address"
+            component="input"
+            type="text"
+            required
+            autoFocus
+          />
+          <ErrorMessage name="email" />
 
-            <label htmlFor="password" className="sr-only">
-              Password
-            </label>
-            <Field
-              className="form-control"
-              name="password"
-              placeholder="Password"
-              component="input"
-              type="password"
-              required
-              autoFocus
-            />
-            <ErrorMessage name="password" />
+          <label htmlFor="password" className="sr-only">
+            Password
+          </label>
+          <Field
+            className="form-control"
+            name="password"
+            placeholder="Password"
+            component="input"
+            type="password"
+            required
+            autoFocus
+          />
+          <ErrorMessage name="password" />
 
-            <br />
+          <br />
 
-            <button
-              className="btn btn-lg btn-primary btn-block mt-2"
-              type="submit"
-              disabled={!isDirty || isSubmitting}
-            >
-              Sign in
-            </button>
-            <div className="mt-3">
-                <a>Register</a>
-            </div>
+          <button
+            className="btn btn-lg btn-primary btn-block mt-2"
+            type="submit"
+            disabled={!dirty || isSubmitting}
+          >
+            Sign in
+          </button>
+          <div className="mt-3">
+            <a>Register</a>
+          </div>
 
-            <p className="mt-5 mb-3 text-muted">&copy; 2018-{this.getYear()}</p>
-          </Form>
-        </Formik>
+          <p className="mt-5 mb-3 text-muted">&copy; 2018-{this.getYear()}</p>
+        </Form>
       </React.Fragment>
-      
     );
   }
 }
 
-export default LoginPage;
+const mapStateToProps = (state: RootState) => ({
+  isLoading: state.login.isLoading,
+});
+const dispatchProps = {
+  loginUser: loginUserAsync.request,
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    dispatchProps
+  ),
+  withFormik<Props, FormValues>({    
+    enableReinitialize: true,
+    // initialize values
+    mapPropsToValues: (data: Props) => ({
+      email: 'testuser@testuser.com',
+      password: 'testuser',
+    }),
+    handleSubmit: (values, form) => {
+      // if (form.props.article != null) {
+      //   form.props.updateArticle({ ...form.props.article, ...values });
+      // } else {
+      //   form.props.createArticle(values);
+      // }
+
+      form.props.loginUser({
+        email: values.email,
+        password: values.password
+      })
+
+      // form.props.redirectToListing();
+      form.setSubmitting(false);
+    },
+  })
+)(LoginPage);

@@ -3,13 +3,9 @@ import { Routes, Route } from 'react-router';
 import { Provider } from "react-redux";
 //import { ConnectedRouter } from "connected-react-router";
 import store, { history } from './store';
-
-import AddArticle from './routes/AddArticle';
-import EditArticle from './routes/EditArticle';
-import ViewArticle from './routes/ViewArticle';
 import { getPath } from './router-paths';
 
-import Home from './routes/Home';
+import Home from './pages/articles/articleListPage';
 import { hot } from 'react-hot-loader/root'
 import { BrowserRouter } from "react-router-dom";
 import PrivateRoute from "./security/privateRoute";
@@ -37,7 +33,7 @@ class App extends React.Component {
             } />
             <Route path="/register" element={<RegisterPage />} />
 
-            <Route path={getPath('addArticle')} element={<AddArticle />} />
+            {/* <Route path={getPath('addArticle')} element={<AddArticle />} />
             <Route
               path={getPath('editArticle', ':articleId')}
               element={<EditArticle />}
@@ -45,7 +41,7 @@ class App extends React.Component {
             <Route              
               path={getPath('viewArticle', ':articleId')}
               element={<ViewArticle />}
-            />
+            /> */}
             
             <Route element={() => <div>Page not found!</div>} />
           </Routes>

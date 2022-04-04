@@ -3,12 +3,13 @@ import { combineReducers } from 'redux';
 //import { routerReducer } from 'react-router-redux';
 import { History } from 'history';
 
-import articlesReducer, { ArticleState } from '../pages/articles/store/reducer';
-import { Reducer } from 'typesafe-actions';
+import articlesReducer from '../pages/articles/store/reducer';
+import loginReducer from '../pages/login/store/reducer';
 
 const rootReducer = combineReducers({
   //router: routerReducer,
-  articles: articlesReducer
+  articles: articlesReducer,
+  login: loginReducer
 });
 
 export default rootReducer;

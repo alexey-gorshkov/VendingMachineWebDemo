@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ArticleForm from '../pages/articles/components/ArticleForm';
-import Main from '../layouts/main';
-import BackLink from '../common/components/BackLink';
+import ArticleForm from './ArticleForm';
+import Main from '../../../common/layouts/main';
+import BackLink from '../../../common/components/BackLink';
 import { connect } from 'react-redux';
 import { RootState } from 'typesafe-actions';
 
