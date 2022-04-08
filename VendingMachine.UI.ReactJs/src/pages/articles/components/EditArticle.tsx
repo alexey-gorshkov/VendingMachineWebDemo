@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-import ArticleForm from '../pages/articles/components/ArticleForm';
-import Main from '../common/layouts/main';
-import BackLink from '../common/components/BackLink';
 import { connect } from 'react-redux';
 import { useParams } from "react-router-dom";
+import BackLink from 'src/common/components/BackLink';
+import Main from 'src/common/layouts/main';
 import { RootState } from 'typesafe-actions';
 
 type Props = {

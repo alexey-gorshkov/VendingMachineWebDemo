@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import BackLink from 'src/common/components/BackLink';
+import Main from 'src/common/layouts/main';
 
-import ArticleView from '../pages/articles/components/ArticleView';
-import Main from '../common/layouts/main';
-import BackLink from '../common/components/BackLink';
 import { RootState } from 'typesafe-actions';
 
 type OwnProps = {
