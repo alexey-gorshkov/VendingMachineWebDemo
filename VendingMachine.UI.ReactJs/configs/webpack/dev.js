@@ -3,7 +3,6 @@ const { merge } = require('webpack-merge');
 const webpack = require('webpack');
 const commonConfig = require('./common');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(commonConfig, {
   mode: 'development',
@@ -29,9 +28,8 @@ module.exports = merge(commonConfig, {
 
     new CopyWebpackPlugin({
       patterns: [{ from: './assets/img/**/*' }],
-    }),
-
-    new HtmlWebpackPlugin({ template: '../html/index.html.ejs' }),
+    })
+    
   ],
   resolve: {
     // alias: {

@@ -1,5 +1,6 @@
 // shared config (dev and prod)
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   output: {
@@ -10,7 +11,7 @@ module.exports = {
     // пути должны быть от текущего файла!
     alias: {
       app: path.resolve(__dirname, '../../src/app.tsx'),
-      src: path.resolve(__dirname, '../../src/')
+      src: path.resolve(__dirname, '../../src/'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
@@ -25,8 +26,8 @@ module.exports = {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
-            }
-          }
+            },
+          },
         ],
       },
       {
@@ -48,16 +49,16 @@ module.exports = {
         options: {
           name: '[name].[ext]',
           outputPath: 'images',
-        }
+        },
       },
     ],
   },
-  plugins: [],
+  plugins: [new HtmlWebpackPlugin({ template: '../html/index.html.ejs' })],
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
   },
   performance: {
     hints: false,
-  }
+  },
 };
