@@ -17,7 +17,6 @@ const isAuthenticated = () => {
     return !!getToken() && !isExpired();
 };
 
-
 export default {
     getToken,
     isExpired,

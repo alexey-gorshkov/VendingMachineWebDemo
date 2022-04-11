@@ -1,24 +1,23 @@
 import * as React from "react";
 import { Routes, Route } from 'react-router';
 import { Provider } from "react-redux";
-//import { ConnectedRouter } from "connected-react-router";
 import store, { history } from './store';
 import { getPath } from './router-paths';
 
 import Home from './pages/articles/articleListPage';
 import { hot } from 'react-hot-loader/root'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate, unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import PrivateRoute from "./security/privateRoute";
 import RestrictedRoute from "./security/restrictedRoute";
 import LoginPage from "./pages/login/loginPage";
 import RegisterPage from "./pages/register/registerPage";
 
-class App extends React.Component {
+class App extends React.Component { 
+
   render() {
     return (
       <Provider store={store}>
-        {/* <ConnectedRouter history={history}> */}
-        <BrowserRouter>
+        <HistoryRouter history={history}>
           <Routes>
 
             <Route path="/" element={
@@ -45,7 +44,7 @@ class App extends React.Component {
             
             <Route element={() => <div>Page not found!</div>} />
           </Routes>
-        </BrowserRouter>
+        </HistoryRouter>
          
         {/* </ConnectedRouter> */}
       </Provider>

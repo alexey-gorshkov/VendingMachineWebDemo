@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { createBrowserHistory } from 'history';
-// import { routerMiddleware } from 'connected-react-router';
 
 import { composeEnhancers } from './utils';
 import rootReducer from './root-reducer';

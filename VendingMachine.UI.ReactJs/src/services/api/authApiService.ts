@@ -10,7 +10,7 @@ export class AccountApiService extends BaseApiService {
   }
 
   login = (requst: ILoginRequest): Promise<ILoginResponse> => {
-    const promise = this.post<ILoginRequest, ILoginResponse>(requst, '/');
+    const promise = this.post<ILoginRequest, ILoginResponse>(requst, 'login');
     return tryTypedPromise(promise);
   };
 }

@@ -1,10 +1,11 @@
 import React from "react";
-import { Navigate, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import securityUtils from "./securityUtils";
 
 const RestrictedRoute = (props: any) => {
-  const token = localStorage.getItem('auth');
-  console.log("token",token); 
-  return !token ? props.children : <Navigate to="/" />;
+  const isAuth = securityUtils.isAuthenticated();
+  console.log("isAuth", isAuth);
+  return !isAuth ? props.children : <Navigate to="/" />;
 };
 
 export default RestrictedRoute;

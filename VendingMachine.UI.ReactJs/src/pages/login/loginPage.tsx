@@ -13,12 +13,13 @@ import { RootState } from 'typesafe-actions';
 import { loginUserAsync } from './store/actions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 type Props = ReturnType<typeof mapStateToProps> & typeof dispatchProps;
 
 type PropsWithFormik = Props & FormikProps<FormValues>;
 
-class LoginPage extends Component<PropsWithFormik, any> {  
+class LoginPage extends Component<PropsWithFormik, any> {
 
   getYear = () => {
     return new Date().getFullYear();
@@ -74,7 +75,7 @@ class LoginPage extends Component<PropsWithFormik, any> {
           <button
             className="btn btn-lg btn-primary btn-block mt-2"
             type="submit"
-            disabled={!dirty || isSubmitting}
+            // disabled={!dirty || isSubmitting}
           >
             Sign in
           </button>
@@ -91,9 +92,10 @@ class LoginPage extends Component<PropsWithFormik, any> {
 
 const mapStateToProps = (state: RootState) => ({
   isLoading: state.login.isLoading,
+  isLoggedIn: state.login.isLoggedIn
 });
 const dispatchProps = {
-  loginUser: loginUserAsync.request,
+  loginUser: loginUserAsync.request
 };
 
 export default compose(
@@ -106,21 +108,21 @@ export default compose(
     // initialize values
     mapPropsToValues: (data: Props) => ({
       email: 'testuser@testuser.com',
-      password: 'testuser',
+      password: 'testuser'
     }),
     handleSubmit: (values, form) => {
       // if (form.props.article != null) {
       //   form.props.updateArticle({ ...form.props.article, ...values });
       // } else {
       //   form.props.createArticle(values);
-      // }
+      // }      
 
       form.props.loginUser({
         email: values.email,
         password: values.password
-      })
+      });
 
-      // form.props.redirectToListing();
+      //form.props.redirectToListing();
       form.setSubmitting(false);
     },
   })
