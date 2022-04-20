@@ -167,7 +167,10 @@ namespace VendingMachineWebAPI
             // Shows UseCors with CorsPolicyBuilder.
             // angular app has a default port 4200
             app.UseCors(builder => builder
-               .WithOrigins("http://localhost:4200")
+               .WithOrigins(
+                "http://localhost:4200", // angular app
+                "http://localhost:4300"  // react app
+               )
                .AllowAnyHeader()
                .AllowAnyMethod());
 
