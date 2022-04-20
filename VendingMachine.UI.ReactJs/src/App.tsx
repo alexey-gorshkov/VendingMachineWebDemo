@@ -19,7 +19,6 @@ class App extends React.Component {
       <Provider store={store}>
         <HistoryRouter history={history}>
           <Routes>
-
             <Route path="/" element={
               <PrivateRoute>
                 <Home />
@@ -45,8 +44,6 @@ class App extends React.Component {
             <Route element={() => <div>Page not found!</div>} />
           </Routes>
         </HistoryRouter>
-         
-        {/* </ConnectedRouter> */}
       </Provider>
     );
   }

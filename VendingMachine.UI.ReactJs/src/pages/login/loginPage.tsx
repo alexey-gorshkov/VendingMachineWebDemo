@@ -1,32 +1,21 @@
 import React, { Component } from 'react';
-import {
-  Formik,
-  Form,
-  FormikProps,
-  Field,
-  withFormik,
-  ErrorMessage,
-  FormikHelpers  
-} from 'formik';
+import { Form, FormikProps, Field, withFormik, ErrorMessage } from 'formik';
 import { FormValues } from './store/types';
 import { RootState } from 'typesafe-actions';
 import { loginUserAsync } from './store/actions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 type Props = ReturnType<typeof mapStateToProps> & typeof dispatchProps;
-
 type PropsWithFormik = Props & FormikProps<FormValues>;
 
 class LoginPage extends Component<PropsWithFormik, any> {
-
   getYear = () => {
     return new Date().getFullYear();
   };
 
   render() {
-    const { isSubmitting = false, dirty = false } = this.props;
+    const { isSubmitting, isLoading } = this.props;
 
     return (
       <React.Fragment>
@@ -38,7 +27,7 @@ class LoginPage extends Component<PropsWithFormik, any> {
             height="50"
           />
         </div>
-        
+
         <Form className="form-signin">
           <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
 
@@ -69,18 +58,16 @@ class LoginPage extends Component<PropsWithFormik, any> {
             autoFocus
           />
           <ErrorMessage name="password" />
-
           <br />
-
           <button
             className="btn btn-lg btn-primary btn-block mt-2"
             type="submit"
-            // disabled={!dirty || isSubmitting}
+            disabled={isSubmitting || isLoading}
           >
             Sign in
           </button>
           <div className="mt-3">
-            <a>Register</a>
+            <a href='/register'>Register</a>
           </div>
 
           <p className="mt-5 mb-3 text-muted">&copy; 2018-{this.getYear()}</p>
@@ -92,37 +79,26 @@ class LoginPage extends Component<PropsWithFormik, any> {
 
 const mapStateToProps = (state: RootState) => ({
   isLoading: state.login.isLoading,
-  isLoggedIn: state.login.isLoggedIn
+  isLoggedIn: state.login.isLoggedIn,
 });
 const dispatchProps = {
-  loginUser: loginUserAsync.request
+  loginUser: loginUserAsync.request,
 };
 
 export default compose(
-  connect(
-    mapStateToProps,
-    dispatchProps
-  ),
-  withFormik<Props, FormValues>({    
+  connect(mapStateToProps, dispatchProps),
+  withFormik<Props, FormValues>({
     enableReinitialize: true,
     // initialize values
     mapPropsToValues: (data: Props) => ({
       email: 'testuser@testuser.com',
-      password: 'testuser'
+      password: 'testuser',
     }),
     handleSubmit: (values, form) => {
-      // if (form.props.article != null) {
-      //   form.props.updateArticle({ ...form.props.article, ...values });
-      // } else {
-      //   form.props.createArticle(values);
-      // }      
-
       form.props.loginUser({
         email: values.email,
-        password: values.password
+        password: values.password,
       });
-
-      //form.props.redirectToListing();
       form.setSubmitting(false);
     },
   })
